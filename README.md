@@ -2,7 +2,7 @@
 
 <!--Tecnologias Utilizadas e suas versões-->
 
-[![Cordova Version][cordova-badge]][cordova-doc] [![Node Version] [node-badge]][node-doc] [![Firebase Version] [firebase-badge]][firebase-doc]
+[![Cordova Version][cordova-badge]][cordova-doc] [![Node Version][node-badge]][node-doc] [![Firebase Version][firebase-badge]][firebase-doc]
 
 > Status: :factory: Em desenvolvimento
 
