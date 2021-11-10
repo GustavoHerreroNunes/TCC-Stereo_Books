@@ -19,6 +19,26 @@
         <title>Player</title>
     </head>
     <body>
+
+        <!-- Start Reading Button -->
+        <div class="container position-fixed top-0 bg-light mw-100 mt-0" style="height:100vh;" id="startScreen">
+            <div class="row justify-content-center position-absolute top-50 start-50 translate-middle w-100">
+                <button class="btn btn-success rounded col-6" id="btnStartReading" disabled>Iniciar Leitura</button>
+            </div>
+        </div>
+
+        <!-- Informations for analysis -->
+        <div class="row mt-2">
+            <div class="col fw-bold text-success">Audio Played</div>
+            <div class="col fw-bold text-info">Volume</div>
+            <div class="col fw-bold text-secondary">Is Ready?</div>
+        </div>
+        <div class="row">
+            <div class="col" id="audioPlayed"></div>
+            <div class="col" id="volume"></div>
+            <div class="col" id="isReady"></div>
+        </div>
+
         <!-- Modal -->
         <div class="modal fade" id="modalContainer" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
@@ -30,12 +50,12 @@
                             <p class="text-secondary">Nome da Banda/Artista</p>
                         </div>
                         <div class="buttons">
-                            <button class="btn btn-dark" id="playAudio">
+                            <button class="btn btn-dark" id="btnPlayAudio">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
                                     <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                                   </svg>
                             </button>
-                            <button class="btn btn-dark" id="resetAudio">
+                            <button class="btn btn-dark" id="btnResetAudio">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-square-fill" viewBox="0 0 16 16">
                                     <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z"/>
                                   </svg>
@@ -47,6 +67,12 @@
             </div>
         </div>
         <!-- End Modal -->
+
+        <!-- Audio Element -->
+        <audio class="d-none" id="playerSound" controls>
+            <source />
+            <p>This browser does not support our audio format</p>
+        </audio>
 
         <!-- Script -->
         <script src="js/player.js"></script>
