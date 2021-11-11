@@ -42,16 +42,26 @@ var player = {
     //Quando todas as estruturas cordova tiverem inicializado
     onDeviceReady: function(){
         console.info("Device Ready");
-        document.getElementById("btnPlayAudio").addEventListener("click", player.setPlayerState);
+        document.getElementById("btnPlayAudio").addEventListener("click", () => {
+            player.setPlayerState("played");
+        });
+        document.getElementById("btnPauseAudio").addEventListener("click", () => {
+            player.setPlayerState("paused");
+        });
+        document.getElementById("btnResetAudio").addEventListener("click", () => {
+            player.setPlayerState("stoped");
+        });
 
         //Mostrar ou esconder player
         window.addEventListener("click", () => {
             player.playerElement.show();
         })
         
+        player.setPlayerState("stoped");
+        
         //Botão para iniciar a tocar o áudio pela primeira vez
         document.getElementById("btnStartReading").addEventListener("click", () => {
-            player.setPlayerState();
+            player.setPlayerState("played");
             document.getElementById("startScreen").style.display = "none";
         });
         player.setSound();
@@ -102,23 +112,34 @@ var player = {
 
     },
 
-    //Método para alterar o estado do player (iniciado ou pausado | played or paused)
-    setPlayerState: function(){
-        //Verificando estado atual do player
-        switch(player.sound.state){
-
-            case "played"://Iniciado
-                player.audioElement.pause();
-                player.sound.state = player.audioElement.paused ? "paused" : (console.log("Erro ao pausar áudio"), "played");
-                break;
+    //Método para alterar o estado do player (played, paused, stoped)
+    setPlayerState: function(state){
+        //Verificando estado atual informado
+        switch(state){
 
             case "paused"://Pausado
+                player.audioElement.pause();
+                player.sound.state = player.audioElement.paused ? "paused" : (console.log("Erro ao pausar áudio"), "played");
+                document.getElementById("btnPlayAudio").style.display = "initial";
+                document.getElementById("btnPauseAudio").style.display = "none";
+                break;
+
+            case "played"://Tocando
                 player.audioElement.play();
                 player.sound.state = !player.audioElement.paused ? "played" : (console.log("Erro ao iniciar áudio"), "paused");
+                document.getElementById("btnPauseAudio").style.display = "initial";
+                document.getElementById("btnPlayAudio").style.display = "none";
+                break;
+
+            case "stoped"://Parado
+                player.audioElement.pause();
+                player.sound.state = player.audioElement.paused ? "stoped" : (console.log("Erro ao parar áudio"), "played");
+                document.getElementById("btnPlayAudio").style.display = "initial";
+                document.getElementById("btnPauseAudio").style.display = "none";
                 break;
 
             default://Estado não conhecido
-                console.log("Estado não conhecido: " + player.sound.state);
+                console.log("Estado não conhecido: " + state);
                 break;
         }
     },
@@ -135,7 +156,7 @@ var player = {
 
                 setPlayerStateIntervalId = setInterval( function(){
                     if(player.sound.state == "paused"){
-                        player.setPlayerState();
+                        player.setPlayerState("played");
                         clearInterval(setPlayerStateIntervalId);
                     }
                 },
