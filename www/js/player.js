@@ -52,12 +52,6 @@ var player = {
             player.setPlayerState("stoped");
         });
 
-        //Mostrar ou esconder player
-        window.addEventListener("click", () => {
-            player.playerElement.show();
-        })
-        
-        player.setPlayerState("stoped");
         
         //Botão para iniciar a tocar o áudio pela primeira vez
         document.getElementById("btnStartReading").addEventListener("click", () => {
@@ -65,6 +59,24 @@ var player = {
             document.getElementById("startScreen").style.display = "none";
         });
         player.setSound();
+        
+        var soundOkIntervalId = null;
+        soundOkIntervalId = setInterval( function() {
+            if(player.sound.state == "paused"){
+                player.setPlayerState("wait");
+                
+                //Mostrar ou esconder player
+                window.addEventListener("click", () => {
+                    if(player.sound.state != "wait"){
+                        player.playerElement.show();
+                    }
+                });
+
+                clearInterval(soundOkIntervalId);
+            }
+        },
+        10);
+        
         /* 2ª opção: iniciar áudio automaticamente 
         player.setPlayerState();
         */
@@ -116,6 +128,15 @@ var player = {
     setPlayerState: function(state){
         //Verificando estado atual informado
         switch(state){
+
+            case "wait":
+                player.audioElement.pause();
+                player.sound.state = player.audioElement.paused ? "wait" : (console.log("Erro ao colocar áudio em espera"), "played");
+                document.getElementById("btnPlayAudio").style.display = "initial";
+                document.getElementById("btnPauseAudio").style.display = "none";
+                document.getElementById("startScreen").style.display = "initial";
+                player.playerElement.hide();
+                break;
 
             case "paused"://Pausado
                 player.audioElement.pause();
