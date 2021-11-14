@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
@@ -18,66 +18,70 @@
         <!-- Title -->
         <title>Player</title>
     </head>
-    <body>
-
-        <!-- Start Reading Button -->
-        <div class="container position-fixed top-0 bg-light mw-100 mt-0" style="height:100vh;" id="startScreen">
-            <div class="row justify-content-center position-absolute top-50 start-50 translate-middle w-100">
-                <button class="btn btn-success rounded col-6" id="btnStartReading" disabled>Iniciar Leitura</button>
+    <body class="h-100">
+        
+        <!-- Page Content -->
+        <div class="container">
+            <!-- Start Reading Button -->
+            <div class="container-fluid fixed-top bg-light h-100" id="startScreen">
+                <div class="row justify-content-center position-absolute top-50 start-50 translate-middle w-100">
+                    <button class="btn btn-success rounded col-6" id="btnStartReading" disabled>Iniciar Leitura</button>
+                </div>
             </div>
-        </div>
-
-        <!-- Informations for analysis -->
-        <div class="row mt-2">
-            <div class="col fw-bold text-success">Audio Played</div>
-            <div class="col fw-bold text-info">Volume</div>
-            <div class="col fw-bold text-secondary">Is Ready?</div>
-        </div>
-        <div class="row">
-            <div class="col" id="audioPlayed"></div>
-            <div class="col" id="volume"></div>
-            <div class="col" id="isReady"></div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="modalContainer" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
-                <!-- Modal Content -->
-                <div class="modal-content bg-dark shadow-sm">
-                    <div class="modal-body audio">
-                        <div class="nomes">
-                            <p class="text-secondary">Nome da Música</p>
-                            <p class="text-secondary">Nome da Banda/Artista</p>
-                        </div>
-                        <div class="buttons">
-                            <button class="btn btn-dark" id="btnPlayAudio">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-                                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
-                                  </svg>
-                            </button>
-                            <button class="btn btn-dark" id="btnPauseAudio" style="display:none">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
-                                    <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
-                                  </svg>
-                            </button>
-                            <button class="btn btn-dark" id="btnResetAudio">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-stop-fill" viewBox="0 0 16 16">
-                                    <path d="M5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11V5A1.5 1.5 0 0 1 5 3.5z"/>
-                                  </svg>
-                            </button>
+    
+            <!-- Informations for analysis -->
+            <div class="row m">
+                <div class="col fw-bold text-success">Audio Played</div>
+                <div class="col fw-bold text-info">Volume</div>
+                <div class="col fw-bold text-secondary">Is Ready?</div>
+            </div>
+            <div class="row">
+                <div class="col" id="audioPlayed"></div>
+                <div class="col" id="volume"></div>
+                <div class="col" id="isReady"></div>
+            </div>
+    
+            <!-- Modal -->
+            <div class="modal fade" id="modalContainer" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <!-- Modal Content -->
+                    <div class="modal-content bg-dark shadow-sm">
+                        <div class="modal-body audio">
+                            <div class="nomes">
+                                <p class="text-secondary">Nome da Música</p>
+                                <p class="text-secondary">Nome da Banda/Artista</p>
+                            </div>
+                            <div class="buttons">
+                                <button class="btn btn-dark" id="btnPlayAudio">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                                      </svg>
+                                </button>
+                                <button class="btn btn-dark" id="btnPauseAudio" style="display:none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
+                                        <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
+                                      </svg>
+                                </button>
+                                <button class="btn btn-dark" id="btnResetAudio">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-stop-fill" viewBox="0 0 16 16">
+                                        <path d="M5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11V5A1.5 1.5 0 0 1 5 3.5z"/>
+                                      </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
+                    <!-- End Modal Content -->
                 </div>
-                <!-- End Modal Content -->
             </div>
+            <!-- End Modal -->
+    
+            <!-- Audio Element -->
+            <audio class="d-none" id="playerSound" controls>
+                <source />
+                <p>This browser does not support our audio format</p>
+            </audio>
         </div>
-        <!-- End Modal -->
 
-        <!-- Audio Element -->
-        <audio class="d-none" id="playerSound" controls>
-            <source />
-            <p>This browser does not support our audio format</p>
-        </audio>
 
         <!-- Script -->
         <script src="js/player.js"></script>
