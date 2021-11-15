@@ -35,7 +35,6 @@ var leitor = {
         loadingTask.promise
             .then( function(doc){
                 leitor.book.num_pages = doc.numPages;
-
                 leitor.renderPage(doc, 1);
             })
             .catch( function(error){
@@ -50,18 +49,31 @@ var leitor = {
             .then( function(page){
                 
                 //Definindo as dimensões do player
-                const viewport = page.getViewport({ scale: 0.8 });
-                leitor.player.witdh = viewport.witdh;
-                leitor.player.height = viewport.height;
+                var scale = 10;
+                var viewport = page.getViewport({ scale: scale, });
+                // Support HiDPI-screens.
+                var outputScale = window.devicePixelRatio || 1;
 
-                //Redenrizando a página
-                const context = leitor.player.getContext("2d");
-                const renderTask = page.render({
-                    canvasContext: context,
-                    viewport
-                });
+                var context = leitor.player.getContext('2d');
 
-                return renderTask.promise;
+                leitor.player.width = Math.floor(viewport.width * outputScale);
+                leitor.player.height = Math.floor(viewport.height * outputScale);
+                // leitor.player.style.width = Math.floor(viewport.width) + "px";
+                // leitor.player.style.height =  Math.floor(viewport.height) + "px";
+                leitor.player.style.width = "100%";
+                leitor.player.style.height =  "100%";
+
+                var transform = outputScale !== 1
+                ? [outputScale, 0, 0, outputScale, 0, 0]
+                : null;
+
+                var renderContext = {
+                canvasContext: context,
+                transform: transform,
+                viewport: viewport
+                };
+                
+                var renderTask = page.render(renderContext);
             });
     }
 }
