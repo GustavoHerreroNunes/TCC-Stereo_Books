@@ -1,4 +1,21 @@
+//Classe com as funcionalidades do player de livros
 var leitor = {
+
+    //Objeto que representa a bilioteca "PDF.js"
+    pdfJS: pdfjsLib,
+
+    //Elemento HTML que representa o player de livro
+    player: document.getElementById("playerBook"),
+
+    //Objeto que representa o livro selecionado
+    book: {
+        title: "O Pequeno Príncipe",
+        sub_title: "",
+        author: "Antoine de Saint-Exupéry",
+        editora_name: "",
+        path: "pdf/o_pequeno_principe.pdf",
+        num_pages: 0,
+    },
 
     initialize: function(){
         console.info("Iniciando...");
@@ -7,68 +24,45 @@ var leitor = {
 
     onDeviceReady: function(){
         console.info("Device Ready");
+        leitor.pdfJS.GlobalWorkerOptions.workerSrc = "../node_modules/pdfjs-dist/build/pdf.worker.js";
+        leitor.initializeBook();
+    },
 
-        "use strict";
+    //Método que carrega o livro no player
+    initializeBook: function(){
+        const loadingTask = leitor.pdfJS.getDocument(leitor.book.path);
 
-        if (!pdfjsLib.getDocument || !pdfjsViewer.PDFPageView) {
-        // eslint-disable-next-line no-alert
-        alert("Please build the pdfjs-dist library using\n  `gulp dist-install`");
-        }
+        loadingTask.promise
+            .then( function(doc){
+                leitor.book.num_pages = doc.numPages;
 
-        // The workerSrc property shall be specified.
-        //
-        pdfjsLib.GlobalWorkerOptions.workerSrc =
-        "../node_modules/pdfjs-dist/build/pdf.worker.js";
+                leitor.renderPage(doc, 1);
+            })
+            .catch( function(error){
+                console.error("Erro ao carregar livro: " + error);
+            })
+    },
 
-        // Some PDFs need external cmaps.
-        //
-        const CMAP_URL = "../node_modules/pdfjs-dist/cmaps/";
-        const CMAP_PACKED = true;
+    //Método que renderiza a página do livro
+    renderPage: function(doc, pageToRender){
+        
+        return doc.getPage(pageToRender)
+            .then( function(page){
+                
+                //Definindo as dimensões do player
+                const viewport = page.getViewport({ scale: 0.8 });
+                leitor.player.witdh = viewport.witdh;
+                leitor.player.height = viewport.height;
 
-        const DEFAULT_URL = "pdf/o_pequeno_principe.pdf";
-        const PAGE_TO_VIEW = 1;
-        const SCALE = 1.0;
+                //Redenrizando a página
+                const context = leitor.player.getContext("2d");
+                const renderTask = page.render({
+                    canvasContext: context,
+                    viewport
+                });
 
-        const ENABLE_XFA = true;
-
-        const container = document.getElementById("pageContainer");
-
-        const eventBus = new pdfjsViewer.EventBus();
-
-        // Loading document.
-        const loadingTask = pdfjsLib.getDocument({
-        url: DEFAULT_URL,
-        cMapUrl: CMAP_URL,
-        cMapPacked: CMAP_PACKED,
-        enableXfa: ENABLE_XFA,
-        });
-        loadingTask.promise.then(function (pdfDocument) {
-            // Document loaded, retrieving the page.
-            console.log("Documento carregado");
-        return pdfDocument.getPage(PAGE_TO_VIEW).then(function (pdfPage) {
-            // Creating the page view with default parameters.
-            console.log("Criando o player do livro");
-            const pdfPageView = new pdfjsViewer.PDFPageView({
-            container,
-            id: PAGE_TO_VIEW,
-            scale: SCALE,
-            defaultViewport: pdfPage.getViewport({ scale: SCALE }),
-            eventBus,
-            // We can enable text/annotation/xfa/struct-layers, as needed.
-            textLayerFactory: !pdfDocument.isPureXfa
-                ? new pdfjsViewer.DefaultTextLayerFactory()
-                : null,
-            annotationLayerFactory: new pdfjsViewer.DefaultAnnotationLayerFactory(),
-            xfaLayerFactory: pdfDocument.isPureXfa
-                ? new pdfjsViewer.DefaultXfaLayerFactory()
-                : null,
-            // structTreeLayerFactory: new pdfjsViewer.DefaultStructTreeLayerFactory(),
+                return renderTask.promise;
             });
-            // Associate the actual page with the view, and draw it.
-            pdfPageView.setPdfPage(pdfPage);
-            return pdfPageView.draw();
-        });
-        });
     }
 }
 

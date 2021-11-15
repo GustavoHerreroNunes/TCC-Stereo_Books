@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" mozdisallowselectionprint>
+<html dir="ltr" mozdisallowselectionprint class="h-100">
     <head>
         <meta charset="utf-8">
         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
@@ -9,20 +9,20 @@
         <meta name="google" content="notranslate">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
-        <link rel="stylesheet" href="../node_modules/pdfjs-dist/web/pdf_viewer.css">
         <title>Leitor</title>
     </head>
-    <body>
+    <body class="h-100">
         <!-- Page Content -->
-        <div class="container">
-            <div id="pageContainer" class="pdfViewer singlePageView"></div>
+        <div class="container-fluid h-100">
+            <div class="row">
+                <canvas class="col-12" id="playerBook"></canvas>
+            </div>
         </div>
 
         <!-- Script para o cordova -->
         <script src="cordova.js"></script>
         
         <!-- Scripts para o pdf.js -->
-        <!-- <script src="../node_modules/pdfjs-dist/web/pdf_viewer.css"></script> -->
         <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
         <script src="../node_modules/pdfjs-dist/web/pdf_viewer.js"></script>
 
