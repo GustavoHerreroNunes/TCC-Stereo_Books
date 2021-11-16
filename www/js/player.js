@@ -214,4 +214,4 @@ var player = {
 
 }
 
-player.onDeviceReady();
+player.initialize();
