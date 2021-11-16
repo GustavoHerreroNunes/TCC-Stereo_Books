@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" mozdisallowselectionprint class="h-100">
+<html dir="ltr" mozdisallowselectionprint class="h-100" draggable="true">
     <head>
         <meta charset="utf-8">
         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
@@ -11,13 +11,15 @@
         <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
         <title>Leitor</title>
     </head>
-    <body>
-        <div class="container">
-            <div class="row">
-                <!-- Page Content -->
-                <div class="wrapper-canvas">
-                    <canvas id="playerBook"></canvas>
-                </div>
+    <body class="container">
+        <!-- Page Content -->
+        <div>
+            <div class="row fixed-top h-100 justify-content-between opacity-0" id="menuBtn">
+                <button class="col-2" id="btnPreviousPage"></button>
+                <button class="col-2" id="btnNextPage"></button>
+            </div>
+            <div>
+                <canvas id="playerBook"></canvas>
             </div>
         </div>
 

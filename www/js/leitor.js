@@ -14,7 +14,11 @@ var leitor = {
         author: "Antoine de Saint-Exupéry",
         editora_name: "",
         path: "pdf/o_pequeno_principe.pdf",
+        doc: null,
         num_pages: 0,
+        page_marked: 1,
+        page_atual: 1,
+        pages_rendered: false
     },
 
     initialize: function(){
@@ -26,6 +30,24 @@ var leitor = {
         console.info("Device Ready");
         leitor.pdfJS.GlobalWorkerOptions.workerSrc = "../node_modules/pdfjs-dist/build/pdf.worker.js";
         leitor.initializeBook();
+        
+        var bookOkIntervalId = null;
+        bookOkIntervalId = setInterval( function(){
+            if(leitor.book.pages_rendered){
+                console.log("Livro pronto para a leitura");
+                         
+                //Eventos para trocar de página
+                document.getElementById("btnPreviousPage").addEventListener('click', () => {
+                    leitor.changePage("previous");
+                });
+                document.getElementById("btnNextPage").addEventListener('click', () => {
+                    leitor.changePage("next");
+                });
+
+                clearInterval(bookOkIntervalId);
+            }
+        }
+        ,10);
     },
 
     //Método que carrega o livro no player
@@ -35,17 +57,23 @@ var leitor = {
         loadingTask.promise
             .then( function(doc){
                 leitor.book.num_pages = doc.numPages;
-                leitor.renderPage(doc, 1);
+
+                console.log("Número de páginas: " + leitor.book.num_pages);
+
+                leitor.book.doc = doc;
+
+                leitor.renderPage(leitor.book.page_marked);
             })
             .catch( function(error){
                 console.error("Erro ao carregar livro: " + error);
             })
     },
 
-    //Método que renderiza a página do livro
-    renderPage: function(doc, pageToRender){
+    //Método que renderiza a página do livro indicada no parâmetro
+    renderPage: function(pageToRender){
+        leitor.book.pages_rendered = false;
         
-        return doc.getPage(pageToRender)
+        return leitor.book.doc.getPage(pageToRender)
             .then( function(page){
                 
                 //Definindo as dimensões do player
@@ -58,8 +86,6 @@ var leitor = {
 
                 leitor.player.width = Math.floor(viewport.width * outputScale);
                 leitor.player.height = Math.floor(viewport.height * outputScale);
-                // leitor.player.style.width = Math.floor(viewport.width) + "px";
-                // leitor.player.style.height =  Math.floor(viewport.height) + "px";
                 leitor.player.style.width = "100%";
                 leitor.player.style.height =  "100%";
 
@@ -72,9 +98,36 @@ var leitor = {
                 transform: transform,
                 viewport: viewport
                 };
-                
+
                 var renderTask = page.render(renderContext);
+
+                renderTask.promise
+                    .then( function(){
+                        leitor.book.pages_rendered = true;
+                        leitor.book.page_atual = pageToRender;
+                    })
             });
+    },
+
+    //Método que troca de página na direção indicada no parâmetro (next ou previous)
+    changePage: function(direction){
+        var page_to_change = null;
+
+        if(leitor.book.pages_rendered){
+            switch(direction){
+                case 'next':
+                    page_to_change = (leitor.book.page_atual != leitor.book.num_pages) ? (leitor.book.page_atual + 1) : leitor.book.page_atual;
+                    break;
+                case 'previous':
+                    page_to_change = (leitor.book.page_atual != 1) ? (leitor.book.page_atual - 1) : leitor.book.page_atual;
+                    break;
+                default:
+                    console.error("Direção para troca de página não reconhecida");
+                    return;
+            }
+
+            leitor.renderPage(page_to_change);
+        }
     }
 }
 
