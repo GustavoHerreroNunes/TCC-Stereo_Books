@@ -27,27 +27,31 @@ var leitor = {
     },
 
     onDeviceReady: function(){
-        console.info("Device Ready");
-        leitor.pdfJS.GlobalWorkerOptions.workerSrc = "../node_modules/pdfjs-dist/build/pdf.worker.js";
-        leitor.initializeBook();
-        
-        var bookOkIntervalId = null;
-        bookOkIntervalId = setInterval( function(){
-            if(leitor.book.pages_rendered){
-                console.log("Livro pronto para a leitura");
-                         
-                //Eventos para trocar de página
-                document.getElementById("btnPreviousPage").addEventListener('click', () => {
-                    leitor.changePage("previous");
-                });
-                document.getElementById("btnNextPage").addEventListener('click', () => {
-                    leitor.changePage("next");
-                });
-
-                clearInterval(bookOkIntervalId);
+        try{
+            alert("Device Ready");
+            leitor.pdfJS.GlobalWorkerOptions.workerSrc = "js/node/pdf.worker.js";
+            leitor.initializeBook();
+            
+            var bookOkIntervalId = null;
+            bookOkIntervalId = setInterval( function(){
+                if(leitor.book.pages_rendered){
+                    alert("Livro pronto para a leitura");
+                             
+                    //Eventos para trocar de página
+                    document.getElementById("btnPreviousPage").addEventListener('click', () => {
+                        leitor.changePage("previous");
+                    });
+                    document.getElementById("btnNextPage").addEventListener('click', () => {
+                        leitor.changePage("next");
+                    });
+    
+                    clearInterval(bookOkIntervalId);
+                }
             }
+            ,10);
+        }catch(error){
+            alert("Erro ao iniciar app");
         }
-        ,10);
     },
 
     //Método que carrega o livro no player
@@ -77,7 +81,7 @@ var leitor = {
             .then( function(page){
                 
                 //Definindo as dimensões do player
-                var scale = 10;
+                var scale = 1;
                 var viewport = page.getViewport({ scale: scale, });
                 // Support HiDPI-screens.
                 var outputScale = window.devicePixelRatio || 1;

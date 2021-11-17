@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" mozdisallowselectionprint class="h-100" draggable="true">
+<html dir="ltr" mozdisallowselectionprint class="h-100">
     <head>
         <meta charset="utf-8">
         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
@@ -8,15 +8,15 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="google" content="notranslate">
         <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <title>Leitor</title>
     </head>
-    <body class="container">
+    <body>
         <!-- Page Content -->
         <div>
             <div class="row fixed-top h-100 justify-content-between opacity-0" id="menuBtn">
-                <button class="col-2" id="btnPreviousPage"></button>
-                <button class="col-2" id="btnNextPage"></button>
+                <button class="col-2 btn btn-primary" id="btnPreviousPage"></button>
+                <button class="col-2 btn btn-primary" id="btnNextPage"></button>
             </div>
             <div>
                 <canvas id="playerBook"></canvas>
@@ -26,12 +26,12 @@
         <!-- Script para o cordova -->
         <script src="cordova.js"></script>
         
-        <!-- Scripts para o pdf.js -->
-        <script src="../node_modules/pdfjs-dist/build/pdf.js"></script>
-        <script src="../node_modules/pdfjs-dist/web/pdf_viewer.js"></script>
-
         <!-- Script para o bootstrap -->
-        <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="js/node/bootstrap.js"></script>
+
+        <!-- Scripts para o pdf.js -->
+        <script src="js/node/pdf.js"></script>
+        <script src="js/node/pdf_viewer.js"></script>
         
         <!-- Script para o player do livro -->
         <script src="js/leitor.js"></script>
