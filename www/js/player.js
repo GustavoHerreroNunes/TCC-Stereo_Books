@@ -7,13 +7,6 @@ var player = {
     //Elemento HTML que representa o player e que o usuário interage
     playerElement: new bootstrap.Modal(document.getElementById("modalContainer")),
 
-    //Elementos HTML que apresentam informações para análise
-    analiseElements: [
-        document.getElementById("audioPlayed"),
-        document.getElementById("volume"),
-        document.getElementById("isReady")
-    ],
-
     //Áudio selecionado
     sound: {
         name: "",
@@ -57,6 +50,7 @@ var player = {
         document.getElementById("btnStartReading").addEventListener("click", () => {
             player.setPlayerState("played");
             document.getElementById("startScreen").style.display = "none";
+            document.getElementById("bookControls").classList += " fixed-top";
         });
         player.setSound();
         
@@ -66,7 +60,7 @@ var player = {
                 player.setPlayerState("wait");
                 
                 //Mostrar ou esconder player
-                window.addEventListener("click", () => {
+                document.getElementById("btnMediaControl").addEventListener("click", () => {
                     if(player.sound.state != "wait"){
                         player.playerElement.show();
                     }
@@ -97,13 +91,11 @@ var player = {
         var readyStageIntervalId = null;
         readyStageIntervalId = setInterval( function(){
 
-            player.analiseElements[2].innerHTML = player.audioElement.readyState == 4;
+            var bookState = document.frmBookState.txbState.value;
 
-            if(player.audioElement.readyState == 4){                
+            if(player.audioElement.readyState == 4 && bookState == "read"){
                 //Definindo o volume do áudio no player
                 player.audioElement.volume = player.sound.volume;
-
-                player.analiseElements[1].innerHTML = player.sound.volume;
         
                 //Definindo 'state' e 'duration' de 'sound'
                 player.sound.state = "paused";
@@ -187,11 +179,7 @@ var player = {
                 player.setCurrentTime();
                 var audioPlayed = parseFloat( ((player.sound.currentTime / player.sound.duration) * 100)).toFixed(2);
 
-                player.analiseElements[0].innerHTML = audioPlayed;
-
                 if(audioPlayed > 90 && player.sound.state == "played"){
-                    player.analiseElements[1].innerHTML = player.sound.volume;
-
                     player.setVolume( (player.sound.volume > 0) ? player.sound.volume -= 0.0005 : 0 );
                 }
             }
