@@ -1,51 +1,54 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
         <meta charset="utf-8">
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" href="css/index.css">
-        <title>Hello World</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--CSS necessário-->
+        <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css">
+
+        <title>Upload - Teste Player Áudio</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+        <div class="container-flex">
+            <div class="position-absolute top-50 start-50 translate-middle">
+                <!--Cards para ações no Banco de Dados-->
+                <div class="b-0 content-fluid">
+                    <form name="frmMusicas">
+                        <div class="row"><label for="btnCarregar">Selecione as músicas para o livro:</label></div>
+
+                        <div class="row"><input type="file" id="btnCarregar" class="btn btn-primary" multiple></div>
+                        
+                        <div class="row mt-4"><button class="btn btn-success" id="btnUpload" type="button">Enviar</button></div>
+                    </form>
+                </div>
             </div>
         </div>
-        <script src="cordova.js"></script>
-        <script src="js/index.js"></script>
+        
+      <!--Scripts base para o Cordova-->
+      <script src="cordova.js"></script>
+
+      <!--Script base para o Bootstrap-->
+      <script src="./styles/bootstrap/js/bootstrap.js"></script>
+
+      <!--Scripts base para o firebase-->
+      <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+      <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+      <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
+      <script src="./js/firebase/configuration.js"></script>
+
+      <!--Script base para o JQuery-->
+      <script src="js/jquery.js"></script>
+
+      <!--Script base para este arquivo-->
+      <script src="./js/upload.js"></script>
     </body>
 </html>
