@@ -19,12 +19,38 @@ var player = {
         nextId: 0
     },
 
-    //Objeto temporário com as urls dos áudios a serem tocados
-    playlist: [
-        ["Big Dreams", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FBig%20Dreams.mp3?alt=media&token=079cb52b-09cb-41be-b049-963dfec7f293"],
-        ["Adventure is Calling", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FAdventure_is_Calling.mp3?alt=media&token=b63de635-971f-4b36-9146-3ff8a6c33b32"],
-        ["Lights", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FLights.mp3?alt=media&token=9781d5e7-b1e5-4586-a551-0a2ce30ab9a9"]
-    ],
+    //Objeto 1 temporário com as urls dos áudios a serem tocados
+    beforePlaylist: {
+        id: 0,
+        change_before_page: 1,
+        change_after_page: 1,
+        sounds: [
+            ["Big Dreams", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FBig%20Dreams.mp3?alt=media&token=079cb52b-09cb-41be-b049-963dfec7f293"],
+        ]
+    },
+
+    //Objeto 2 temporário com as urls dos áudios a serem tocados
+    afterPlaylist: {
+        id: 2,
+        change_before_page: 6,
+        change_after_page: 7,
+        sounds: [
+            ["Lights", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FLights.mp3?alt=media&token=9781d5e7-b1e5-4586-a551-0a2ce30ab9a9"]
+            ["Adventure is Calling", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FAdventure_is_Calling.mp3?alt=media&token=b63de635-971f-4b36-9146-3ff8a6c33b32"],
+        ]
+    },
+
+    //Objeto com as urls dos áudios a serem tocados (recebidas do banco) e o range de páginas em que a playlist deve ser tocada
+    playlist: {
+        id: 1,
+        change_before_page: 3,
+        change_after_page: 5,
+        sounds: [
+            ["Big Dreams", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FBig%20Dreams.mp3?alt=media&token=079cb52b-09cb-41be-b049-963dfec7f293"],
+            ["Adventure is Calling", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FAdventure_is_Calling.mp3?alt=media&token=b63de635-971f-4b36-9146-3ff8a6c33b32"],
+            ["Lights", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FLights.mp3?alt=media&token=9781d5e7-b1e5-4586-a551-0a2ce30ab9a9"]
+        ] 
+    },
 
     //Construtor do app
     initialize: function(){
@@ -79,8 +105,8 @@ var player = {
 
     //Método para definir os parâmetros para o áudio a ser tocado
     setSound: function(){
-        player.sound.name = player.playlist[player.sound.nextId][0];
-        player.sound.src = player.playlist[player.sound.nextId][1];
+        player.sound.name = player.playlist.sounds[player.sound.nextId][0];
+        player.sound.src = player.playlist.sounds[player.sound.nextId][1];
         player.sound.volume = 0.5;
         
         //Enviando a url do áudio para o player no HTML
@@ -91,7 +117,7 @@ var player = {
         var readyStageIntervalId = null;
         readyStageIntervalId = setInterval( function(){
 
-            var bookState = document.frmBookState.txbState.value;
+            var bookState = document.frmCommunication.txbBookState.value;
 
             if(player.audioElement.readyState == 4 && bookState == "read"){
                 //Definindo o volume do áudio no player
@@ -104,7 +130,7 @@ var player = {
                 console.log("[sound.duration]", player.sound.duration);
 
                 //Definindo o id da próxima música a ser tocada
-                player.sound.nextId = (player.sound.nextId + 1) % player.playlist.length;
+                player.sound.nextId = (player.sound.nextId + 1) % player.playlist.sounds.length;
         
                 //Habilitando botão para iniciar leitura
                 document.getElementById("btnStartReading").disabled = false;
@@ -162,7 +188,7 @@ var player = {
         //Esperando o áudio terminar de tocar
         setInterval( function(){
             if(player.audioElement.ended){
-                player.setSound("https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FAdventure_is_Calling.mp3?alt=media&token=b63de635-971f-4b36-9146-3ff8a6c33b32");
+                player.setSound();
 
                 //Esperano o novo áudio ser definido
                 var setPlayerStateIntervalId = null;
@@ -185,6 +211,31 @@ var player = {
             }
         },
         10);
+    },
+
+    //Método para trocar de playlist quando o usuário sair do range de páginas de um playlist
+    isOutOfRange: function(){
+        var page_current = document.frmCommunication.txbPageCurrent;
+        var positionRelativeToRange = (page_current < player.playlist.change_before_page) ? "before" : ( (page_current > player.playlist.change_after_page) ? "after" : "within");
+
+        setInterval( function(){
+            switch(positionRelativeToRange){
+                case "before":
+                    player.playlist.id = player.playlist.id - 1
+                    //Posteriormente buscar a playlist de acordo com o id (antes ou depois de atualizá-lo);
+                    break;
+                case "after":
+
+                    break;
+                case "within":
+
+                    break;
+                default:
+                    console.log("Erro: Posição de página desconhecida");
+                    break;
+            }
+        }
+        ,10);
     },
 
     //Método para definir o 'player.sound.currentTime' de acordo com o minuto atual do áudio

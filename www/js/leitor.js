@@ -16,8 +16,8 @@ var leitor = {
         path: "pdf/o_pequeno_principe.pdf",
         doc: null,
         num_pages: 0,
-        page_marked: 1,
-        page_atual: 1,
+        page_marked: 3,
+        page_current: 3,
         pages_rendered: false
     },
 
@@ -34,7 +34,7 @@ var leitor = {
             var bookOkIntervalId = null;
             bookOkIntervalId = setInterval( function(){
                 if(leitor.book.pages_rendered){
-                    document.frmBookState.txbState.value = "read";
+                    document.frmCommunication.txbBookState.value = "read";
                              
                     //Eventos para trocar de página
                     document.getElementById("btnPreviousPage").addEventListener('click', () => {
@@ -107,7 +107,9 @@ var leitor = {
                 renderTask.promise
                     .then( function(){
                         leitor.book.pages_rendered = true;
-                        leitor.book.page_atual = pageToRender;
+                        leitor.book.page_current = pageToRender;
+                        document.frmCommunication.txbPageCurrent = leitor.book.page_current;
+
                         leitor.markPage(pageToRender);
                     })
             });
@@ -120,10 +122,10 @@ var leitor = {
         if(leitor.book.pages_rendered){
             switch(direction){
                 case 'next':
-                    page_to_change = (leitor.book.page_atual != leitor.book.num_pages) ? (leitor.book.page_atual + 1) : leitor.book.page_atual;
+                    page_to_change = (leitor.book.page_current != leitor.book.num_pages) ? (leitor.book.page_current + 1) : leitor.book.page_current;
                     break;
                 case 'previous':
-                    page_to_change = (leitor.book.page_atual != 1) ? (leitor.book.page_atual - 1) : leitor.book.page_atual;
+                    page_to_change = (leitor.book.page_current != 1) ? (leitor.book.page_current - 1) : leitor.book.page_current;
                     break;
                 default:
                     console.error("Direção para troca de página não reconhecida");
