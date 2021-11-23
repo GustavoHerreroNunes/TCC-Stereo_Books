@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login + Firebase Teste</title>
+        <link rel="stylesheet" type="text/css" href="teste.css">
+    </head>
+    <body>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+
+
+        <div id="content_container">
+            <div id="form_container">
+                <div id="form_header_container">
+                    <h2 id="form_header"> Login + Firebase teste</h2>
+                </div>
+
+                <div id="from_content_container">
+                    <div id="from_content_inner_container">
+                        <input type="text" id="txtNomeCompleto" placeholder="Nome Completo">
+                        <input type="email" id="txtEmail" placeholder="email@email.com">
+                        <input type="password" id="txtSenha" placeholder="Nova Senha">
+
+                        <input type="text" id="txtCorFav" placeholder="Cor Favorita">
+                        <input type="text" id="txtCPF" placeholder="xxx.xxx.xxx-xx">
+
+                        <div id="button_container">
+                            <button onclick="login()">Login</button>
+                            <button onclick="register()">Register</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    <script src="teste.js"></script>
+</html>
