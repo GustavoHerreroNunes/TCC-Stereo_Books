@@ -108,6 +108,7 @@ var leitor = {
                     .then( function(){
                         leitor.book.pages_rendered = true;
                         leitor.book.page_atual = pageToRender;
+                        leitor.markPage(pageToRender);
                     })
             });
     },
@@ -131,6 +132,11 @@ var leitor = {
 
             leitor.renderPage(page_to_change);
         }
+    },
+
+    //Método que marca a página em que o usuário está
+    markPage(pageNumber){
+        leitor.book.page_marked = pageNumber;
     }
 }
 
