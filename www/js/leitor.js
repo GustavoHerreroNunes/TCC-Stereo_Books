@@ -108,7 +108,7 @@ var leitor = {
                     .then( function(){
                         leitor.book.pages_rendered = true;
                         leitor.book.page_current = pageToRender;
-                        document.frmCommunication.txbPageCurrent = leitor.book.page_current;
+                        document.frmCommunication.txbPageCurrent.value = leitor.book.page_current;
 
                         leitor.markPage(pageToRender);
                     })

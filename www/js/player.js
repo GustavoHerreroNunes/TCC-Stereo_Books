@@ -23,9 +23,9 @@ var player = {
     beforePlaylist: {
         id: 0,
         change_before_page: 1,
-        change_after_page: 1,
+        change_after_page: 2,
         sounds: [
-            ["Big Dreams", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FBig%20Dreams.mp3?alt=media&token=079cb52b-09cb-41be-b049-963dfec7f293"],
+            ["Walking in the Sky", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FWalking_in_the_Sky.mp3?alt=media&token=8896fdaf-ca5f-410b-b1d2-605a60d52acc"],
         ]
     },
 
@@ -35,8 +35,8 @@ var player = {
         change_before_page: 6,
         change_after_page: 7,
         sounds: [
-            ["Lights", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FLights.mp3?alt=media&token=9781d5e7-b1e5-4586-a551-0a2ce30ab9a9"]
-            ["Adventure is Calling", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FAdventure_is_Calling.mp3?alt=media&token=b63de635-971f-4b36-9146-3ff8a6c33b32"],
+            ["June", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FJune%20-%20Bobby%20Richards.mp3?alt=media&token=cf21e1bf-b39a-4455-b3de-eb6c3764ccb2"],
+            ["Prism", "https://firebasestorage.googleapis.com/v0/b/testestreaming-9a6ba.appspot.com/o/sounds%2FPrism%20-%20Bobby%20Richards.mp3?alt=media&token=832ba7de-9b80-4839-8f8c-826a137fd7bc"]
         ]
     },
 
@@ -77,6 +77,7 @@ var player = {
             player.setPlayerState("played");
             document.getElementById("startScreen").style.display = "none";
             document.getElementById("bookControls").classList += " fixed-top";
+           player.isOutOfRange();
         });
         player.setSound();
         
@@ -215,19 +216,55 @@ var player = {
 
     //Método para trocar de playlist quando o usuário sair do range de páginas de um playlist
     isOutOfRange: function(){
-        var page_current = document.frmCommunication.txbPageCurrent;
-        var positionRelativeToRange = (page_current < player.playlist.change_before_page) ? "before" : ( (page_current > player.playlist.change_after_page) ? "after" : "within");
-
+        console.log("isOutOfRange");
+        
         setInterval( function(){
+            var page_current = document.frmCommunication.txbPageCurrent.value;
+            var positionRelativeToRange = (page_current < player.playlist.change_before_page) ? "before" : ( (page_current > player.playlist.change_after_page) ? "after" : "within");
+            
+            // console.log("[page_current]", page_current);
+            // console.log("[State <]", page_current < player.playlist.change_before_page);
+            // console.log("[State >]", page_current > player.playlist.change_after_page);
+
+            // console.log("[positionRelativeToRange]", positionRelativeToRange);
+
             switch(positionRelativeToRange){
                 case "before":
+                    // console.log("B-ok");
+                    
                     player.playlist.id = player.playlist.id - 1
                     //Posteriormente buscar a playlist de acordo com o id (antes ou depois de atualizá-lo);
+                    player.playlist.change_before_page = player.beforePlaylist.change_before_page;
+                    player.playlist.change_after_page = player.beforePlaylist.change_after_page;
+                    player.playlist.sounds = []
+                    player.beforePlaylist.sounds.forEach( (sound) => {
+                        player.playlist.sounds.push(sound);
+                    });
+
+                    //Reiniciando player de áudio
+                    player.sound.nextId = 0;
+                    player.setSound();
+                    player.setPlayerState("played");
                     break;
                 case "after":
+                    // console.log("A-ok");
 
+                    player.playlist.id = player.playlist.id + 1
+                    //Posteriormente buscar a playlist de acordo com o id (antes ou depois de atualizá-lo);
+                    player.playlist.change_before_page = player.afterPlaylist.change_before_page;
+                    player.playlist.change_after_page = player.afterPlaylist.change_after_page;
+                    player.playlist.sounds = []
+                    player.afterPlaylist.sounds.forEach( (sound) => {
+                        player.playlist.sounds.push(sound);
+                    });
+
+                    //Reiniciando player de áudio
+                    player.sound.nextId = 0;
+                    player.setSound();
+                    player.setPlayerState("played");
                     break;
                 case "within":
+                    // console.log("W-ok");
 
                     break;
                 default:
