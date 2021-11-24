@@ -12,21 +12,117 @@
         <!--CSS necessário-->
         <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css">
 
-        <title>Upload - Teste Player Áudio</title>
+        <title>Upload Livro</title>
     </head>
     <body>
-        <div class="container-flex">
-            <div class="position-absolute top-50 start-50 translate-middle">
-                <!--Cards para ações no Banco de Dados-->
-                <div class="b-0 content-fluid">
-                    <form name="frmMusicas">
-                        <div class="row"><label for="btnCarregar">Selecione as músicas para o livro:</label></div>
-
-                        <div class="row"><input type="file" id="btnCarregar" class="btn btn-primary" multiple></div>
-                        
-                        <div class="row mt-4"><button class="btn btn-success" id="btnUpload" type="button">Enviar</button></div>
-                    </form>
+        <div class="container">
+            <div class="p-4 pb-5 mb-4">
+              <form name="frmCadastrarLivro">
+                <h1 class="text-center" style="font-size:30pt">Livro</h1>
+                <p class="text-center fs-6">Preencha algumas informações sobre o livro para ajudar seus leitores a encontrá-lo</p>
+      
+                <div class="row">
+                  <label for="txbTítulo" class="ps-0 pt-3 fs-6 text-secondary form-label">Título:<span class="text-danger">*</span></label>
+                  <input type="text" name="txbTítulo" id="txbTitulo" placeholder="O Planeta IX" class="form-control">
                 </div>
+      
+                <div class="row">
+                  <label for="txbSubtitulo" class="ps-0 pt-3 fs-6 text-secondary form-label">Subtítulo:</label>
+                  <input type="text" name="txbSubtitulo" id="txbSubtitulo" placeholder="Um novo mundo" class="form-control">
+                </div>
+
+                <div class="row">
+                    <label for="txbAutor" class="ps-0 pt-3 fs-6 text-secondary form-label">Autor:<span class="text-danger">*</span></label>
+                    <input type="text" name="txbAutor" id="txbAutor" placeholder="Fulano Ciclano" class="form-control">
+                </div>
+
+                <div class="row">
+                  <label for="txbISBN" class="ps-0 pt-3 fs-6 text-secondary form-label">ISBN:<span class="text-danger">*</span></label>
+                  <input type="text" name="txbISBN" id="txbISBN" placeholder="1234.5678.9101" class="form-control">
+                </div>
+
+                <div class="row">
+                    <label for="txbNumPages" class="ps-0 pt-3 fs-6 text-secondary form-label">Número de Páginas:<span class="text-danger">*</span></label>
+                    <input type="text" name="txbNumPages" id="txbNumPages" placeholder="80" class="form-control">
+                </div>
+      
+                <div class="row">
+                    <label for="slctClassIndicativa" class="ps-0 pt-3 fs-6 text-secondary form-label">Classificação indicativa:<span class="text-danger">*</span></label>
+                    <select name="slctClassIndicativa" id="slctClassIndicativa" class="form-control">
+                        <option selected disabled>Pessoas de que idade lerão o livro?</option>
+                        <option value="Livre" class="text-success">
+                            L - Livre para todos os públicos
+                        </option>
+                        <option value="10" class="text-primary">
+                            10 - Não recomendado para menores de 10 anos
+                        </option>
+                        <option value="12" class="text-warning">
+                            12 - Não recomendado para menores de 12 anos
+                        </option>
+                        <option value="14" style="color:orange">
+                            14 - Não recomendado para menores de 14 anos
+                        </option>
+                        <option value="16" class="text-danger">
+                            16 - Não recomendado para menores de 16 anos
+                        </option>
+                        <option value="18" class="text-dark">
+                            18 - Não recomendado para menores de 18 anos
+                        </option>
+                    </select>
+                </div>
+
+                
+                <div class="row">
+                  <label class="ps-0 pt-3 fs-6 text-secondary form-label">Categorias:<span class="text-danger">*</span></label>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input type="checkbox" name="btnCategoria" id="btnCategAventura" value="Aventura" autocomplete="off" class="btn-check">
+                        <label class="btn btn-outline-success" for="btnCategAventura">Aventura</label>
+                    </div>
+                    
+                    <div class="col">
+                        <input type="checkbox" name="btnCategoria" id="btnCategFantasia" value="Fantasia" autocomplete="off" class="btn-check">
+                        <label class="btn btn-outline-primary" for="btnCategFantasia">Fantasia</label>
+                    </div>
+
+                    <div class="col">
+                        <input type="checkbox" name="btnCategoria" id="btnCategSuspense" value="Suspense" autocomplete="off" class="btn-check">
+                        <label class="btn btn-outline-dark" for="btnCategSuspense">Suspense</label>
+                    </div>
+
+                    <div class="col">
+                        <input type="checkbox" name="btnCategoria" id="btnCategMisterio" value="Mistério" autocomplete="off" class="btn-check">
+                        <label class="btn btn-outline-danger" for="btnCategMisterio">Mistério</label>
+                    </div>
+                </div>
+                
+                <div class="row">
+                  <label for="fileCapaLivro" class="ps-0 pt-3 fs-6 text-secondary form-label">Foto da capa:<span class="text-danger">*</span></label>
+                </div>
+
+                <div class="input-group">
+                    <input type="file" id="btnCapaLivro" class="form-control">
+                </div>
+
+                <div class="row">
+                    <label for="filePDFLivro" class="ps-0 pt-3 fs-6 text-secondary form-label">PDF:<span class="text-danger">*</span></label>
+                  </div>
+  
+                <div class="input-group">
+                    <input type="file" id="btnPDFLivro" class="form-control">
+                </div>
+
+                <div class="row justify-content-center mt-1">
+                  <button type="reset" name="btnLimpar" class="btn btn-secondary col-4 m-3">
+                    Limpar
+                  </button>
+                  
+                  <button type="button" name="btnCadastrar" id="btnCadastrar" class="btn btn-primary col-4 m-3">
+                    Cadastrar
+                  </button>
+                </div>
+              </form>
             </div>
         </div>
         

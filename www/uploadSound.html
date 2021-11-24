@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--CSS necessário-->
+        <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css">
+
+        <title>Upload Áudios</title>
+    </head>
+    <body>
+        <div class="container-flex">
+            <div class="position-absolute top-50 start-50 translate-middle">
+                <!--Cards para ações no Banco de Dados-->
+                <div class="b-0 content-fluid">
+                    <form name="frmMusicas">
+                        <div class="row"><label for="btnCarregar">Selecione os Áudios para o livro:</label></div>
+
+                        <div class="row"><input type="file" id="btnCarregar" class="btn btn-primary" multiple></div>
+                        
+                        <div class="row mt-4"><button class="btn btn-success" id="btnUpload" type="button">Enviar</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+      <!--Scripts base para o Cordova-->
+      <script src="cordova.js"></script>
+
+      <!--Script base para o Bootstrap-->
+      <script src="./styles/bootstrap/js/bootstrap.js"></script>
+
+      <!--Scripts base para o firebase-->
+      <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+      <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+      <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
+      <script src="./js/firebase/configuration.js"></script>
+
+      <!--Script base para o JQuery-->
+      <script src="js/jquery.js"></script>
+
+      <!--Script base para este arquivo-->
+      <script src="./js/cadastrarAudios.js"></script>
+    </body>
+</html>
