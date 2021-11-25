@@ -12,6 +12,12 @@ var app = {
     //Número de arquivos enviados para o firebase
     filesFirebase: 0,
 
+    //URLs para os arquivos enviados
+    urls: {
+        capa: null,
+        pdf: null
+    },
+
     //Construtor do app
     initialize: function() {
         console.info("Iniciando...");
@@ -21,29 +27,52 @@ var app = {
     //Quando todas as estruturas cordova tiverem inicializado
     onDeviceReady: function() {
         console.info("Device Ready");
-        document.getElementById("btnCadastrar").addEventListener('click', app.cadastrar);
+        document.getElementById("btnCadastrar").addEventListener('click', app.cadastrarLivro);
     },
 
-    //Cadastra um novo registro na tabela 'clientes'
-    cadastrar: function() {
+    //Método para fazer todas as operções de cadastro do registro e upload dos arquivos
+    cadastrarLivro: function(){
+        var bookCapa = document.getElementById("fileCapaLivro");
+        var bookPDF = document.getElementById("filePDFLivro");
+        
+        app.upload(bookCapa, "capa");
+        app.upload(bookPDF, "pdf");
+        
+        var intervalIdUploadFiles = null;
+        intervalIdUploadFiles = setInterval( () => {
+
+            if(app.urls.capa != null && app.urls.pdf != null){
+                console.log("Arquivos enviados");
+
+                app.cadastrarRegist();
+
+                clearInterval(intervalIdUploadFiles);
+            }
+        }
+        ,10);
+
+    },
+
+    //Cadastra um novo registro na tabela 'livros'
+    cadastrarRegist: function() {
         let registTitulo = document.getElementById("txbTitulo").value;
         let registSubtitulo = document.getElementById("txbSubtitulo").value;
         let registAutor = document.getElementById("txbAutor").value;
         let registISBN = document.getElementById("txbISBN").value;
         let registNumPages = document.getElementById("txbNumPages").value;
         let registClassIndicativa = document.getElementById("slctClassIndicativa").value;
-        let registCategoria = document.getElementById("btnCategoria").value;
+        
+        var btnCategoria = document.getElementsByName("btnCategoria");
+        var registCategoria = [];
+        for(var i = 0; i < btnCategoria.length; i++){
+            if(btnCategoria[i].checked){
+                registCategoria[i] = btnCategoria[i].value;
+            }
+        }
 
         var db = firebase.firestore();
 
-        try{
-            var bookPdf = document.getElementById("fileCapaLivro");
-            app.upload(bookPdf);
-
-        }catch(error){
-            alert("Erro ao enviar arquivos, tenta novamente mais tarde");
-            console.log("Erro ao enviar arquivos: " + error);
-        }
+        console.log("Criando registro");
 
         db.collection("livros").add({
             titulo: registTitulo,
@@ -52,10 +81,13 @@ var app = {
             isbn: registISBN,
             num_pages: registNumPages,
             classificacao_indicativa: registClassIndicativa,
-            categoria: registCategoria
+            categoria: registCategoria,
+            capa: app.urls.capa,
+            pdf: app.urls.pdf
         })
         .then( (docRef) => {
-            
+            alert("Livro cadastrado com sucesso!");
+            window.location.href = "uploadSound.html";
         })
         .catch( (error) => {
             alert("Erro ao cadastrar livro");
@@ -64,8 +96,8 @@ var app = {
     },
 
      //Envia os arquivos para o firebase
-     uploadToFirebase: function(file, refSounds){
-        var refFiel = refSounds.child(file.name);
+     uploadToFirebase: function(file, refBook, type){
+        var refFiel = refBook.child(file.name);
     
         var uploadTask = refFiel.put(file);
         console.log("Antes do UploadTaks");
@@ -99,21 +131,25 @@ var app = {
                 uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL){
                     console.log("Upload concluído!");
                     console.log("URL para download: " + downloadURL);
-                    return downloadURL;
+                    if(type == "capa"){
+                        app.urls.capa = downloadURL;
+                    }else if(type == "pdf"){
+                        app.urls.pdf = downloadURL;
+                    }
                 });
 
                 app.filesFirebase++;
 
                 //Se tiverem sido enviados menos arquivos para o firebase do que recebidos no HTML
                 if(app.filesFirebase < app.filesHTML){
-                    app.uploadToFirebase(app.filesSended[app.filesFirebase], refSounds);
+                    app.uploadToFirebase(app.filesSended[app.filesFirebase], refBook);
                 }
             }
         );
     },
 
     //Cria um objeto file e envia o arquivo para o storage
-    upload: function(files){
+    upload: function(files, type){
         try{    
             var filesBtnCarregar = files;
 
@@ -133,13 +169,16 @@ var app = {
 
 
         try{
+            let registTitulo = document.getElementById("txbTitulo").value;
+            let pathTitle = registTitulo.replace(/ /g, "_");
+
             var refRoot = app.storage.ref().root;
             console.log("Referenciando o root");
     
-            var refSounds = refRoot.child('sounds');
-            console.log("Referenciando o \/sounds");
+            var refSounds = refRoot.child('livros/Saraiva/' + pathTitle);
+            console.log("Referenciando o \/livros/Saraiva/o_pequeno_principe");
 
-            return app.uploadToFirebase(app.filesSended[app.filesFirebase], refSounds);
+            app.uploadToFirebase(app.filesSended[app.filesFirebase], refSounds, type);
 
 
         }catch(error){
