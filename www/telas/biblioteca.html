@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional indivation
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/custom.css">
+        <script src="cordova.js"></script>
+        <script src="js/index.js"></script>
+        <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+       
+        <title>Hello World</title>
+    </head>
+    
+    <body class="bg-dark">
+        <nav style="margin-bottom: 10px; margin-top: 5px;">    
+            <div class="d-flex gap-2 ">
+                <img style="max-width: 80px;" src="img/SB-logo-200.png" alt="Stereo Books Logo" />
+                <button class="btn btn-outline-primary " style="margin-left: auto;" type="button">Pesquisa</button>
+            </div>
+          </nav>
+          <!--Carrossel-Destaque-->
+          <div class="container">
+            <div class="border-bottom">
+            <h5 class="text-primary">Em destaque</h5>
+            <div id="carouselExampleControls" class="carousel slide " style="margin-bottom: 0.5rem; " data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="img/pp.jpg" style="max-width: 100px;"  alt="...">
+                  <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                  <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                  <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                  <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+            </div> 
+            <!--Carrossel-Recomendado-->
+            <div class="border-bottom">
+                <h5 class="text-primary">Recomendado</h5>
+                <div id="carouselExampleControls1" class="carousel slide " style="margin-bottom: 0.5rem; " data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="img/pp.jpg" style="max-width: 100px;"  alt="...">
+                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls1" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls1" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+            </div> 
+            
+            <!--Carrossel-Fantasia-->
+            <div class="border-bottom">
+                <h5 class="text-primary">Fantasia</h5>
+                <div id="carouselExampleControls2" class="carousel slide " style="margin-bottom: 0.5rem; " data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="img/pp.jpg" style="max-width: 100px;"  alt="...">
+                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+                        <button style="text-decoration: none;"><img src="img/test.jpg" style="max-width: 100px;" alt="..."></button>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+                </div>     
+
+        </div>
+         <!--menu flutuante-->
+         <nav class="nav bg-dark border-top" style="position: fixed; bottom:0rem; width: 100%;">
+                
+            <a class="nav-link" style="margin-left: auto;" href="#">Pagina Inicial</a>
+            <a class="nav-link" style="margin-right: auto;" href="#">Minha Estante</a>
+      </nav>     
+    </body>
+
+</html>

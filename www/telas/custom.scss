@@ -1,0 +1,51 @@
+@import "node_modules/bootstrap/scss/functions";//importando as fuctions do scss
+
+$input-border-color:#9EC7E4;
+$form-label-color:#9EC7E4;
+$cyan:#9EC7E4;
+$secondary: #F59762;
+$primary:#9EC7E4;
+$dark: #EDEDED;
+
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+$stereo-books-colors:(
+
+    "pastel-green":#A0DEB9,    
+    "pastel-blue":#9EC7E4,
+    "pastel-orange":#F59762,
+    "saturated-orange":#F24B0F,
+    "grayish": #EDEDED
+
+);
+
+$theme-colors: map-merge($theme-colors, $stereo-books-colors);
+
+$position-values-new: (
+  0: 0,
+  5: 5%,
+  15: 15%,
+  17: 17%,
+  20: 20%,
+  25: 25%,
+  30: 30%,
+  35: 35%,
+  50: 50%,
+  100: 100%
+);
+
+
+$position-values: map-merge($position-values , $position-values-new);
+
+@import "node_modules/bootstrap/scss/root";
+@import "node_modules/bootstrap/scss/reboot";
+@import "node_modules/bootstrap/scss/type";
+@import "node_modules/bootstrap/scss/images";
+@import "node_modules/bootstrap/scss/containers";
+@import "node_modules/bootstrap/scss/grid";
+@import "node_modules/bootstrap/scss/buttons";
+@import "node_modules/bootstrap/scss/forms";
+@import "node_modules/bootstrap/scss/transitions";
+
+@import "node_modules/bootstrap/scss/bootstrap.scss";
