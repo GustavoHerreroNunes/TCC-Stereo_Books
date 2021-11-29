@@ -15,19 +15,83 @@
         <title>Upload Áudios</title>
     </head>
     <body>
-        <div class="container-flex">
-            <div class="position-absolute top-50 start-50 translate-middle">
-                <!--Cards para ações no Banco de Dados-->
-                <div class="b-0 content-fluid">
-                    <form name="frmMusicas">
-                        <div class="row"><label for="btnCarregar">Selecione os Áudios para o livro:</label></div>
+        <div class="container">
+            <div class="p-4 pb-5 mb-4">
+                <form name="frmCadastrarAudio">
+                    <h1 class="text-center" style="font-size:30pt">Áudio</h1>
+                    <p class="text-center fs-6">Preencha algumas informações sobre o audio para ajudar seus leitores a encontrá-lo</p>
+                
+                    <!-- Informar o Titulo da Música-->
+                    <div class="row">
+                        <label for="txbTítulo" class="ps-0 pt-3 fs-6 text-secondary form-label">Título:<span class="text-danger">*</span></label>
+                        <input type="text" name="txbTitulo" id="txbTitulo" placeholder="Título da Música" class="form-control">
+                    </div>
 
-                        <div class="row"><input type="file" id="btnCarregar" class="btn btn-primary" multiple></div>
+                    <!-- Informar o nome do Artista/Banda da Música -->
+                    <div class="row">
+                        <label for="txbArtista" class="ps-0 pt-3 fs-6 text-secondary form-label">Artista/Banda:<span class="text-danger">*</span></label>
+                        <input type="text" name="txbArtista" id="txbSubtitulo" placeholder="Nome do artista/banda" class="form-control">
+                    </div>
+
+                    <!-- Informar se o áudio pode ser usado pelo público -->
+                    <div class="row">
+                        <label for="radioPrivacidade" class="ps-0 pt-3 fs-6 text-secondary form-label">Privacidade do Áudio:<span class="text-danger">*</span></label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioPrivacidade" id="radioPublico" value="Sim" checked>
+                            <label class="form-check-label" for="radioPublico">
+                                Público
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioPrivacidade" id="radioPrivado" value="Não">
+                            <label class="form-check-label" for="radioPrivado">
+                                Privado
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Informar tipo de audio -->
+                    <div class="row">
+                        <label for="radioTipoDeAudio" class="ps-0 pt-3 fs-6 text-secondary form-label">Tipo de Áudio:<span class="text-danger">*</span></label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioTipoDeAudio" id="radioMusica" value="Sim" checked>
+                            <label class="form-check-label" for="radioMusica">
+                                Música
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioTipoDeAudio" id="radioEfeitosSonoro" value="Não">
+                            <label class="form-check-label" for="radioEfeitosSonoro">
+                                Efeito Sonoro
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Informar arquivo de áudio -->
+                    <div class="row">
+                        <label for="btnCarregar" class="ps-0 pt-4 fs-6 text-secondary form-label">Selecione um arquivo de Áudio para upload:<span class="text-danger">*</span></label>
+                    </div>
+                    
+                    <!-- Dar upload em um arquivo de áudio -->
+                    <div class="input-group">
+                        <input type="file" id="btnCarregar" class="form-control">
+                    </div>
                         
-                        <div class="row mt-4"><button class="btn btn-success" id="btnUpload" type="button">Enviar</button></div>
-                    </form>
-                </div>
-            </div>
+                    <!-- Botões -->
+                    <div class="row justify-content-center mt-1">
+                        <!-- Botão para Limpar informações do formulário -->
+                        <button type="reset" name="btnLimpar" class="btn btn-secondary col-5 m-3">
+                            Limpar
+                        </button>
+                        
+                        <!-- Botão para enviar formulário -->
+                        <button type="button" name="btnUpload" id="btnUpload" class="btn btn-primary col-5 m-3">
+                            Enviar
+                        </button>
+      
+                    </div>
+
+                </form>
         </div>
         
       <!--Scripts base para o Cordova-->
