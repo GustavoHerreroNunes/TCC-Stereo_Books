@@ -12,6 +12,11 @@ var app = {
     //Número de arquivos enviados para o firebase
     filesFirebase: 0,
 
+    //URLs para os arquivos enviados
+    url: {
+        audio: null
+    },
+
     //Construtor do app
     initialize: function(){
         console.info("Iniciando...");
@@ -60,6 +65,8 @@ var app = {
                 uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL){
                     console.log("Upload concluído!");
                     console.log("URL para download: " + downloadURL);
+                    app.url.audio = downloadURL;
+                    app.cadastrarAudio();
                 });
 
                 app.filesFirebase++;
@@ -106,7 +113,56 @@ var app = {
             console.log("Erro enviar arquivos para o Storage: " + error);
         }
 
-    }
+    },
+
+    //Método para fazer todas as operções de cadastro do registro e upload dos arquivos
+    cadastrarAudio: function(){
+        var audioURL = document.getElementById("btnCarregar");
+        
+        app.upload(audioURL, "audio");
+        
+        var intervalIdUploadFiles = null;
+        intervalIdUploadFiles = setInterval( () => {
+
+            if(app.url.audio != null){
+                console.log("Arquivos enviados");
+
+                app.cadastrarRegist();
+
+                clearInterval(intervalIdUploadFiles);
+            }
+        }
+        ,10);
+
+    },
+
+    //Cadastra um novo registro na tabela 'audios'
+    cadastrarRegist: function() {
+        let registTitulo = document.getElementById("txbTitulo").value;
+        let registArtista = document.getElementById("txbArtista").value;
+        var registPrivacidade = document.querySelector('input[name="radioPrivacidade"]:checked').value;
+        var registTipoDeAudio = document.querySelector('input[name="radioTipoDeAudio"]:checked').value;
+
+        var db = firebase.firestore();
+
+        console.log("Criando registro");
+
+        db.collection("audios").add({
+            titulo: registTitulo,
+            artista: registArtista,
+            privacidade: registPrivacidade,
+            tipo: registTipoDeAudio,
+            url: app.url.audio
+        })
+        .then( (docRef) => {
+            alert("Livro cadastrado com sucesso!");
+            window.location.href = "uploadSound.html";
+        })
+        .catch( (error) => {
+            alert("Erro ao cadastrar livro");
+            console.info("Erro ao cadastrar documento: " + error);
+        });
+    },
 }
 
 app.initialize();

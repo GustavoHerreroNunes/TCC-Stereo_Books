@@ -23,27 +23,27 @@
                 
                     <!-- Informar o Titulo da Música-->
                     <div class="row">
-                        <label for="txbTítulo" class="ps-0 pt-3 fs-6 text-secondary form-label">Título:<span class="text-danger">*</span></label>
+                        <label for="txbTitulo" class="ps-0 pt-3 fs-6 text-secondary form-label">Título:<span class="text-danger">*</span></label>
                         <input type="text" name="txbTitulo" id="txbTitulo" placeholder="Título da Música" class="form-control">
                     </div>
 
                     <!-- Informar o nome do Artista/Banda da Música -->
                     <div class="row">
                         <label for="txbArtista" class="ps-0 pt-3 fs-6 text-secondary form-label">Artista/Banda:<span class="text-danger">*</span></label>
-                        <input type="text" name="txbArtista" id="txbSubtitulo" placeholder="Nome do artista/banda" class="form-control">
+                        <input type="text" name="txbArtista" id="txbArtista" placeholder="Nome do artista/banda" class="form-control">
                     </div>
 
                     <!-- Informar se o áudio pode ser usado pelo público -->
                     <div class="row">
                         <label for="radioPrivacidade" class="ps-0 pt-3 fs-6 text-secondary form-label">Privacidade do Áudio:<span class="text-danger">*</span></label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioPrivacidade" id="radioPublico" value="Sim" checked>
+                            <input class="form-check-input" type="radio" name="radioPrivacidade" id="radioPublico" value="Público" checked>
                             <label class="form-check-label" for="radioPublico">
                                 Público
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioPrivacidade" id="radioPrivado" value="Não">
+                            <input class="form-check-input" type="radio" name="radioPrivacidade" id="radioPrivado" value="Privado">
                             <label class="form-check-label" for="radioPrivado">
                                 Privado
                             </label>
@@ -54,13 +54,13 @@
                     <div class="row">
                         <label for="radioTipoDeAudio" class="ps-0 pt-3 fs-6 text-secondary form-label">Tipo de Áudio:<span class="text-danger">*</span></label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioTipoDeAudio" id="radioMusica" value="Sim" checked>
+                            <input class="form-check-input" type="radio" name="radioTipoDeAudio" id="radioMusica" value="Música" checked>
                             <label class="form-check-label" for="radioMusica">
                                 Música
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioTipoDeAudio" id="radioEfeitosSonoro" value="Não">
+                            <input class="form-check-input" type="radio" name="radioTipoDeAudio" id="radioEfeitosSonoro" value="Efeito Sonoro">
                             <label class="form-check-label" for="radioEfeitosSonoro">
                                 Efeito Sonoro
                             </label>
