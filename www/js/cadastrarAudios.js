@@ -139,7 +139,7 @@ var app = {
     //Cadastra um novo registro na tabela 'audios'
     cadastrarRegist: function() {
         let registTitulo = document.getElementById("txbTitulo").value;
-        let registArtista = document.getElementById("txbArtista").value;
+        let registCreator = document.getElementById("txbCreator").value;
         var registPrivacidade = document.querySelector('input[name="radioPrivacidade"]:checked').value;
         var registTipoDeAudio = document.querySelector('input[name="radioTipoDeAudio"]:checked').value;
 
@@ -149,7 +149,7 @@ var app = {
 
         db.collection("audios").add({
             titulo: registTitulo,
-            artista: registArtista,
+            creator: registCreator,
             privacidade: registPrivacidade,
             tipo: registTipoDeAudio,
             url: app.url.audio
