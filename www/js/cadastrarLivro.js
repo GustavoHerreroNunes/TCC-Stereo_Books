@@ -53,46 +53,43 @@ var app = {
 
     },
 
-    //Cadastra um novo registro na tabela 'livros'
-    cadastrarRegist: function() {
-        let registTitulo = document.getElementById("txbTitulo").value;
-        let registSubtitulo = document.getElementById("txbSubtitulo").value;
-        let registAutor = document.getElementById("txbAutor").value;
-        let registISBN = document.getElementById("txbISBN").value;
-        let registNumPages = document.getElementById("txbNumPages").value;
-        let registClassIndicativa = document.getElementById("slctClassIndicativa").value;
-        
-        var btnCategoria = document.getElementsByName("btnCategoria");
-        var registCategoria = [];
-        for(var i = 0; i < btnCategoria.length; i++){
-            if(btnCategoria[i].checked){
-                registCategoria[i] = btnCategoria[i].value;
+    //Cria um objeto file e envia o arquivo para o storage
+    upload: function(files, type){
+        try{    
+            var filesBtnCarregar = files;
+
+            console.log(filesBtnCarregar.files.length);
+
+            app.filesHTML = filesBtnCarregar.files.length;
+    
+            for(var i = 0; i< app.filesHTML; i++){
+                app.filesSended[i] = filesBtnCarregar.files[i];
+    
+                console.log( (i+1) + "º arquivo: " + app.filesSended[i].name);
             }
+
+        }catch(error){
+            console.log("Erro ao criar objeto file: " + error);
         }
 
-        var db = firebase.firestore();
 
-        console.log("Criando registro");
+        try{
+            let registTitulo = document.getElementById("txbTitulo").value;
+            let pathTitle = registTitulo.replace(/ /g, "_");
 
-        db.collection("livros").add({
-            titulo: registTitulo,
-            subtitulo: registSubtitulo,
-            autor: registAutor,
-            isbn: registISBN,
-            num_pages: registNumPages,
-            classificacao_indicativa: registClassIndicativa,
-            categoria: registCategoria,
-            capa: app.urls.capa,
-            pdf: app.urls.pdf
-        })
-        .then( (docRef) => {
-            alert("Livro cadastrado com sucesso!");
-            window.location.href = "uploadSound.html";
-        })
-        .catch( (error) => {
-            alert("Erro ao cadastrar livro");
-            console.info("Erro ao cadastrar documento: " + error);
-        });
+            var refRoot = app.storage.ref().root;
+            console.log("Referenciando o root");
+    
+            var refSounds = refRoot.child('livros/Saraiva/' + pathTitle);
+            console.log("Referenciando o \/livros/Saraiva/" + pathTitle);
+
+            app.uploadToFirebase(app.filesSended[app.filesFirebase], refSounds, type);
+
+
+        }catch(error){
+            console.log("Erro enviar arquivos para o Storage: " + error);
+        }
+
     },
 
      //Envia os arquivos para o firebase
@@ -148,43 +145,57 @@ var app = {
         );
     },
 
-    //Cria um objeto file e envia o arquivo para o storage
-    upload: function(files, type){
-        try{    
-            var filesBtnCarregar = files;
-
-            console.log(filesBtnCarregar.files.length);
-
-            app.filesHTML = filesBtnCarregar.files.length;
-    
-            for(var i = 0; i< app.filesHTML; i++){
-                app.filesSended[i] = filesBtnCarregar.files[i];
-    
-                console.log( (i+1) + "º arquivo: " + app.filesSended[i].name);
+    //Cadastra um novo registro na tabela 'livros'
+    cadastrarRegist: function() {
+        let registTitulo = document.getElementById("txbTitulo").value;
+        let registSubtitulo = document.getElementById("txbSubtitulo").value;
+        let registAutor = document.getElementById("txbAutor").value;
+        let registISBN = document.getElementById("txbISBN").value;
+        let registNumPages = document.getElementById("txbNumPages").value;
+        let registClassIndicativa = document.getElementById("slctClassIndicativa").value;
+        
+        var btnCategoria = document.getElementsByName("btnCategoria");
+        var registCategoria = [];
+        var positionOnArray = 0;
+        for(var i = 0; i < btnCategoria.length; i++){
+            if(btnCategoria[i].checked){
+                registCategoria[positionOnArray] = btnCategoria[i].value;
+                positionOnArray++;
             }
-
-        }catch(error){
-            console.log("Erro ao criar objeto file: " + error);
         }
 
+        var db = firebase.firestore();
 
-        try{
-            let registTitulo = document.getElementById("txbTitulo").value;
-            let pathTitle = registTitulo.replace(/ /g, "_");
+        console.log("Criando registro");
+        console.log("[registTitulo]", registTitulo);
+        console.log("[registSubtitulo]", registSubtitulo);
+        console.log("[registAutor]", registAutor);
+        console.log("[registISBN]", registISBN);
+        console.log("[registNumPages]", registNumPages);
+        console.log("[registClassIndicativa]", registClassIndicativa);
+        console.log("[registCategoria]", registCategoria);
+        console.log("[app.urls.capa]", app.urls.capa);
+        console.log("[app.urls.pdf]", app.urls.pdf);
 
-            var refRoot = app.storage.ref().root;
-            console.log("Referenciando o root");
-    
-            var refSounds = refRoot.child('livros/Saraiva/' + pathTitle);
-            console.log("Referenciando o \/livros/Saraiva/o_pequeno_principe");
-
-            app.uploadToFirebase(app.filesSended[app.filesFirebase], refSounds, type);
-
-
-        }catch(error){
-            console.log("Erro enviar arquivos para o Storage: " + error);
-        }
-
+        db.collection("livros").add({
+            titulo: registTitulo,
+            subtitulo: registSubtitulo,
+            autor: registAutor,
+            isbn: registISBN,
+            num_pages: registNumPages,
+            classificacao_indicativa: registClassIndicativa,
+            categoria: registCategoria,
+            capa: app.urls.capa,
+            pdf: app.urls.pdf
+        })
+        .then( (docRef) => {
+            alert("Livro cadastrado com sucesso!");
+            window.location.href = "uploadSound.html";
+        })
+        .catch( (error) => {
+            alert("Erro ao cadastrar livro");
+            console.info("Erro ao cadastrar documento: " + error);
+        });
     }
 };
 
