@@ -34,7 +34,7 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/custom.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/custom.css">
         <!--owl carousel cdnjs library-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -56,8 +56,11 @@
                 <button class="btn btn-outline-primary " style="margin-left: auto;" type="button">Pesquisa</button>
             </div>
           </nav>
-         <!--FAZER CARROSSEIS RESPONSIVOS Carrossel-Destaque-->
-              <div class="container">
+        
+         <!--Carrossel-Destaque-->
+         <section>   
+         <div class="container">
+           <h5>Destaque</h5>
                   <div class="row">
                     <div class="owl-carousel owl-theme">
                       <div class="item">
@@ -65,7 +68,28 @@
                       </div>
                     </div>
                   </div>
-              </div>
+              </div>   
+              <div class="container">
+                <h5>Recomendado</h5>
+                       <div class="row">
+                         <div class="owl-carousel owl-theme">
+                           <div class="item">
+                             <a href="#modalTeste" data-bs-toggle="modal" data-bs-target="#modalTeste"><img src="img/pp.jpg" style="max-width: 200px;" ></a>
+                           </div>
+                         </div>
+                       </div>
+                    </div>                 
+                  <div class="container">
+                    <h5>Fantasia</h5>
+                           <div class="row">
+                             <div class="owl-carousel owl-theme">
+                               <div class="item">
+                                 <a href="#modalTeste" data-bs-toggle="modal" data-bs-target="#modalTeste"><img src="img/pp.jpg" style="max-width: 200px;" ></a>
+                               </div>
+                             </div>
+                           </div>
+                       </div>
+                     
               <!--Modal-->
                 <div class="modal" id="modalTeste"tabindex="-1">
                   <div class="modal-dialog">
@@ -82,14 +106,11 @@
                         <button type="button" class="btn btn-primary">Save changes</button>
                       </div>
                     </div>
-                  </div>  
-
-         <!--menu flutuante-->
-         <nav class="nav bg-dark border-top" style="position: fixed; bottom:0rem; width: 100%;">
+                  </div>
+                </section>  
                 
-            <a class="nav-link" style="margin-left: auto;" href="#">Pagina Inicial</a>
-            <a class="nav-link" style="margin-right: auto;" href="#">Minha Estante</a>
-      </nav>     
+        
+       <!--Script owl carousel-->
       <script>
      $('.owl-carousel').owlCarousel({
     loop:true,
@@ -112,6 +133,11 @@
     }
 })
        </script>
+          <!--menu flutuante-->
+          <nav class="nav bg-light border-top" style="position: fixed; bottom:0rem; width: 100%;z-index: 1;">    
+            <a class="nav-link" style="margin-left: auto;" href="#">Pagina Inicial</a>
+            <a class="nav-link" style="margin-right: auto;" href="#">Minha Estante</a>
+        </nav>     
     </body>
 
 </html>
