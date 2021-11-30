@@ -29,15 +29,14 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/custom.css">
 
-        <script src="cordova.js"></script>
-        <script src="js/index.js"></script>
+        
         <title>Hello World</title>
     </head>
     <body class="bg-dark"><!--opções de login/cadastro-->
@@ -63,12 +62,43 @@
                             <label for="exampleForControlInput1">Telefone:</label>
                             <input type="tel" class="form-control" id="txtTelefone">
                         </div>
-                    </form></br></br>    
-                    <!--Botão de envio de dados e avanço do cadastro-->
-                    <div class="position-relative">
-                        <button type="button" class="btn btn-pastel-blue text-light position-absolute bottom-5 end-5 d-grid gap-2 col-4 ">Avançar</button>
-                </div>
+                        <div class="mb-3">
+                            <label for="exampleForControlInput1">Email:</label>
+                            <input type="email" class="form-control" id="txtEmail">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleForControlInput1">Confirmar Email:</label>
+                            <input type="email" class="form-control" id="txtEmailConf">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleForControlInput1">Senha</label>
+                            <input type="password" class="form-control" id="txtSenha">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleForControlInput1">Confirmar Senha</label>
+                            <input type="password" class="form-control" id="txtSenhaConf">
+                        </div>
+                    </form></br>
+                    <div class="d-grid gap-3 col-10 mx-auto"> 
+                        <button type="button" class="btn btn-pastel-green text-light btn-lg" id="btnCadastro">Cadastrar-se</button>
+                    </div></br>
+                    <div class="form-check position-relative">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Ao marcar a caixa do lado você concorda com nossos <a href="">Termos e Condições</a>
+                        </label> </br></br></br>   
+                    
             </div>
+            <script src="../cordova.js"></script>
+
+            <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+            <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+            <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+        
+                <script src="../js/firebase.js"></script>
+                <script src="../js/autor.js"></script>
     </body>
 
 </html>
