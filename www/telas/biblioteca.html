@@ -35,10 +35,17 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/custom.css">
+        <!--owl carousel cdnjs library-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="cordova.js"></script>
         <script src="js/index.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-       
+        <!--cdnjs Jquery-->  
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!--owl carousel cdnjs library-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
         <title>Hello World</title>
     </head>
     
@@ -49,94 +56,62 @@
                 <button class="btn btn-outline-primary " style="margin-left: auto;" type="button">Pesquisa</button>
             </div>
           </nav>
-          <!--Carrossel-Destaque-->
-          <div class="container">
-            <div class="border-bottom">
-            <h5 class="text-primary">Em destaque</h5>
-            <div id="carouselExampleControls" class="carousel slide " style="margin-bottom: 0.5rem; " data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="img/pp.jpg" style="max-width: 100px;"  alt="...">
-                  <img src="img/test.jpg" style="max-width: 100px;" alt="...">
-                  <img src="img/test.jpg" style="max-width: 100px;" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="img/test.jpg" style="max-width: 100px;" alt="...">
-                  <img src="img/test.jpg" style="max-width: 100px;" alt="...">
-                  <img src="img/test.jpg" style="max-width: 100px;" alt="...">
-                </div>
+         <!--FAZER CARROSSEIS RESPONSIVOS Carrossel-Destaque-->
+              <div class="container">
+                  <div class="row">
+                    <div class="owl-carousel owl-theme">
+                      <div class="item">
+                        <a href="#modalTeste" data-bs-toggle="modal" data-bs-target="#modalTeste"><img src="img/pp.jpg" style="max-width: 200px;" ></a>
+                      </div>
+                    </div>
+                  </div>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-            </div> 
-            <!--Carrossel-Recomendado-->
-            <div class="border-bottom">
-                <h5 class="text-primary">Recomendado</h5>
-                <div id="carouselExampleControls1" class="carousel slide " style="margin-bottom: 0.5rem; " data-bs-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img src="img/pp.jpg" style="max-width: 100px;"  alt="...">
-                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
-                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
+              <!--Modal-->
+                <div class="modal" id="modalTeste"tabindex="-1">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
                     </div>
-                    <div class="carousel-item">
-                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
-                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
-                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
-                    </div>
-                  </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls1" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls1" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
-                </div>
-            </div> 
-            
-            <!--Carrossel-Fantasia-->
-            <div class="border-bottom">
-                <h5 class="text-primary">Fantasia</h5>
-                <div id="carouselExampleControls2" class="carousel slide " style="margin-bottom: 0.5rem; " data-bs-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img src="img/pp.jpg" style="max-width: 100px;"  alt="...">
-                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
-                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
-                      <img src="img/test.jpg" style="max-width: 100px;" alt="...">
-                        <button style="text-decoration: none;"><img src="img/test.jpg" style="max-width: 100px;" alt="..."></button>
-                    </div>
-                  </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
-                </div>
-                </div>     
+                  </div>  
 
-        </div>
          <!--menu flutuante-->
          <nav class="nav bg-dark border-top" style="position: fixed; bottom:0rem; width: 100%;">
                 
             <a class="nav-link" style="margin-left: auto;" href="#">Pagina Inicial</a>
             <a class="nav-link" style="margin-right: auto;" href="#">Minha Estante</a>
       </nav>     
+      <script>
+     $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:4,
+            nav:true
+        },
+        600:{
+            items:7,
+            nav:false
+        },
+        1000:{
+            items:10,
+            nav:true,
+            loop:false
+        }
+    }
+})
+       </script>
     </body>
 
 </html>
