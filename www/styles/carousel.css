@@ -1,0 +1,33 @@
+.custom-arrows {
+  width: 45ch;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.custom-arrows .splide__arrow {
+  background-color: transparent;
+}
+.custom-arrows .splide__arrow svg {
+  fill: limegreen;
+}
+
+.splide__slide {
+  transition: transform 300ms ease-in;
+  transform: scale(1);
+}
+.splide__slide:not(.is-active) {
+  opacity: 0.4;
+  transform: scale(0.95);
+}
+
+.depoimento {
+  text-align: center;
+}
+
+.splide__arrow--next {
+  right: 0 !important;
+}
+
+/*# sourceMappingURL=carousel.css.map */

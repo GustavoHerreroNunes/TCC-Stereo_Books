@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional indivation
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" type="text/css" href="styles/custom.css">
+        <!--owl carousel cdnjs library-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="../cordova.js"></script>
+
+        <!--Scripts base para o firebase-->
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
+        <script src="js/firebase.js"></script>
+
+        
+        <!-- <script src="js/index.js"></script> -->
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <!--cdnjs Jquery-->  
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!--owl carousel cdnjs library-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+        <script src="js/biblioteca.js"></script>
+
+        <title>Biblioteca</title>
+    </head>
+    
+    <body class="bg-dark">
+        <nav style="margin-bottom: 10px; margin-top: 5px;">    
+            <div class="d-flex gap-2 ">
+                <img style="max-width: 80px;" src="img/logo.png" alt="Stereo Books Logo" />
+                <button class="btn btn-outline-primary " style="margin-left: auto;" type="button">Pesquisa</button>
+            </div>
+        </nav>
+        
+         <!--Carrossel-Destaque-->
+        <section>   
+          <div class="container">
+            <h5>Destaque</h5>
+
+            <div class="row">
+              <div class="owl-carousel owl-theme" id="itemDestaque">
+                
+              </div>
+            </div>
+
+          </div>   
+
+          <div class="container">
+            <h5>Recomendado</h5>
+
+            <div class="row">
+              <div class="owl-carousel owl-theme" id="itemRecomendado">
+
+              </div>
+            </div>
+
+          </div>       
+
+          <div class="container">
+            <h5>Fantasia</h5>
+
+            <div class="row">
+              <div class="owl-carousel owl-theme" id="itemFantasia">
+
+              </div>
+            </div>
+
+          </div>
+                      
+          <!--Modal-->
+          <div class="modal" id="modalTeste"tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+          </div>
+        </section>  
+                
+        
+       <!--Script owl carousel-->
+      <script>
+     
+      </script>
+      <!--menu flutuante-->
+      <nav class="nav bg-light border-top" style="position: fixed; bottom:0rem; width: 100%;z-index: 1;">    
+        <a class="nav-link" style="margin-left: auto;" href="#">Pagina Inicial</a>
+        <a class="nav-link" style="margin-right: auto;" href="#">Minha Estante</a>
+      </nav>     
+    </body>
+
+</html>
