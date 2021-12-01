@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="../styles/custom.css">
+
+        
+		
+        <title>Cadastro Leitor - StereoBooks</title>
+    </head>
+    <body class="bg-dark"><!--opções de login/cadastro-->
+        <div class="container">
+           
+        <img class="d-grid gap-2 col-7 mx-auto" src="../img/SB-logo-200.png" alt="Stereo Books Logo" />
+        </br>
+
+        <h5 class="text-center text-info">Cadastre-se</h5>  
+        <!--Ativador do modal-->           
+        <button type="button" class="btn btn-pastel-blue text-light d-grid gap-2 col-4 "id="modal" >Entrar com google</button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="modalTermos" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <!-- Modal Content -->
+                <div class="modal-content bg-dark shadow-sm">
+                    <div class="modal-body audio">
+                        <div class="nomes">
+                            <p class="text-secondary">Nome da Música</p>
+                            <p class="text-secondary">Nome da Banda/Artista</p>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-check position-relative">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Ao marcar a caixa do lado você concorda com nossos <a href="">Termos e Condições</a>
+                                </label> </br></br></br> 
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Fim do Modal Content -->
+            </div>
+        </div>
+        <!-- Fim do Modal -->
+            
+        <!--Formulário de cadastro do leitor-->    
+        <form>
+            <div class="mb-3">          
+                <label  for="exampleForControlInput1">Nome:</label>
+                <input type="text" class="form-control" id="txtNome">
+            </div>
+            <div class="mb-3">
+                <label for="exampleForControlInput1">Data de Nascimento:</label>
+                <input type="date" class="form-control" id="txtDataNascimento">
+            </div>
+            <div class="mb-3">
+                <label for="exampleForControlInput1">Email:</label>
+                <input type="email" class="form-control" id="txtEmail">
+            </div>
+            <div class="mb-3">
+                <label for="exampleForControlInput1">Confirmar Email:</label>
+                <input type="email" class="form-control" id="txtEmailConf">
+            </div>
+            <div class="mb-3">
+                <label for="exampleForControlInput1">Senha</label>
+                <input type="password" class="form-control" id="txtSenha">
+            </div>
+            <div class="mb-3">
+                <label for="exampleForControlInput1">Confirmar Senha</label>
+                <input type="password" class="form-control" id="txtSenhaConf">
+            </div>
+        </form>
+        </br>   
+
+        <div class="d-grid gap-3 col-10 mx-auto"> 
+            <button type="button" class="btn btn-pastel-green text-light btn-lg" id="btnCadastro">Cadastrar-se</button>
+        </div>
+        </br>
+
+        <div class="form-check position-relative">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Ao marcar a caixa do lado você concorda com nossos <a href="">Termos e Condições</a>
+            </label> </br></br></br>  
+            <!--Botão de envio de dados e avanço do cadastro-->
+            </div>
+        </div>
+            
+        <script src="../cordova.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+    
+        <script src="../js/firebase.js"></script>
+        <script src="../js/leitor.js"></script>
+    </body>
+
+
+</html>

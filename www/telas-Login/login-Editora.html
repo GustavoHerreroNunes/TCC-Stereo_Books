@@ -34,22 +34,30 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" href="styles/custom.css">
+        <link rel="stylesheet" href="../styles/custom.css">
 
-        <script src="cordova.js"></script>
-        <title>Entrar Como - StereoBooks</title>
+        <script src="../cordova.js"></script>
+        <title>Login Editora - StereoBooks</title>
     </head>
-    <body class="bg-dark">
+    <body class="bg-dark"><!--opções de login/cadastro-->
         <div class="container">
-                <!--Logo do aplicativo-->
-                <img class="d-grid gap-2 col-7 mx-auto" src="img/SB-logo-200.png" alt="Stereo Books Logo" /><br>
-                <h5 class="text-center text-secondary">Entrar como</h5></br>
-                    <!--Opções de login-->
-                    <div class="d-grid gap-3 col-10 mx-auto"> 
-                        <a class="d-grid gap-3 col-10 mx-auto" style="text-decoration: none;" href="telas-Login/login-Leitor.html"><button type="button" class="btn btn-pastel-orange text-light btn-lg ">Leitor</button></a>
-                        <a class="d-grid gap-3 col-10 mx-auto" style="text-decoration: none;" href="telas-Login/login-Editora.html"><button type="button" class="btn btn-pastel-orange text-light btn-lg ">Editora</button></a>
-                        <a class="d-grid gap-3 col-10 mx-auto" style="text-decoration: none;" href="telas-Login/login-Autor.html"><button type="button" class="btn btn-pastel-orange text-light btn-lg ">Autor</button> </a>  
+            <img class="d-grid gap-2 col-7 mx-auto" src="../img/SB-logo-200.png" alt="Stereo Books Logo" /><br>
+             <h5 class="text-center text-info"></h5>                         
+             <form >
+                <div class="mb-3">
+                    <label for="exampleForControlInput1">Email:</label>
+                    <input type="email" class="form-control" id="txtEmail">
                 </div>
+                <div class="mb-3">
+                    <label for="exampleForControlInput1">Senha:</label>
+                    <input type="password" class="form-control" id="txtSenha">
+                </div>
+              </form>
+             <div class="d-grid gap-3 col-10 mx-auto"> 
+                 <button type="button" class="btn btn-pastel-green text-light btn-lg">Login</button>
+                 <a href="" class="text-center">Esqueceu a senha?</a>
+                </div></br></br></br></br>
+                <p class="text-center">Não possui uma conta? <a href="../telas-Cadastro/cadastro-Editora-1.html">Cadastre-se</a></p>
         </div>
     </body>
 
