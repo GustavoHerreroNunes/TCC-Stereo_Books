@@ -8,7 +8,7 @@ var app = {
     },
 
     onDeviceReady: function() {
-        console.log("");
+        console.log("Device Ready");
         document.getElementById("btnCadastro").addEventListener("click",app.inserir);  
     },
 
@@ -31,7 +31,7 @@ var app = {
         })
         .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
-            window.location.href = cordova.file.applicationDirectory + "telas-Cadastro/cadastro-Leitor-1.html";
+            window.location.href = "selecionar-categoria.html?user=" + docRef.id;
         })
         .catch((error) => {
             console.error("Error adding document: ", error);
