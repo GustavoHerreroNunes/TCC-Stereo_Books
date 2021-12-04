@@ -10,7 +10,7 @@
         <meta name="color-scheme" content="light dark">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/custom.css">
         <link rel="stylesheet" href="css/index.css">
 
         <!-- Title -->
@@ -19,11 +19,11 @@
     <body>
 
         <!-- Page Content -->
-        <div>
+        <div style="z-index: 1;">
             <!-- Start Reading Button -->
-            <div class="container-fluid fixed-top bg-light h-100" id="startScreen">
+            <div class="container-fluid fixed-top bg-grayish h-100" id="startScreen">
                 <div class="row justify-content-center position-absolute top-50 start-50 translate-middle w-100">
-                    <button class="btn btn-success rounded col-6" id="btnStartReading" disabled>Iniciar Leitura</button>
+                    <button class="btn btn-pastel-green rounded col-6 text-light" id="btnStartReading" disabled>Iniciar Leitura</button>
                 </div>
             </div>
     
@@ -35,28 +35,28 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="modalContainer" tabindex="-1" role="dialog">
+            <div class="modal fade " id="modalContainer" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <!-- Modal Content -->
-                    <div class="modal-content bg-dark shadow-sm">
+                    <div class="modal-content bg-grayish bg-opacity-75 shadow-sm">
                         <div class="modal-body audio">
                             <div class="nomes">
-                                <p class="text-secondary">Nome da Música</p>
-                                <p class="text-secondary">Nome da Banda/Artista</p>
+                                <p class="text-pastel-orange fw-bold ">Nome da Música</p>
+                                <p class="text-pastel-orange fw-bold ">Nome da Banda/Artista</p>
                             </div>
-                            <div class="buttons">
-                                <button class="btn btn-dark" id="btnPlayAudio">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                            <div class="buttons ">
+                                <button class="btn btn-opacity-0 col-5" id="btnPlayAudio">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#F24B0F" class="bi bi-play-fill" viewBox="0 0 16 16">
                                         <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                                       </svg>
                                 </button>
-                                <button class="btn btn-dark" id="btnPauseAudio" style="display:none">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
+                                <button class="btn btn-opacity-0 col-5" id="btnPauseAudio" style="display:none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#F24B0F" class="bi bi-pause-fill" viewBox="0 0 16 16">
                                         <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
                                       </svg>
                                 </button>
-                                <button class="btn btn-dark" id="btnResetAudio">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-stop-fill" viewBox="0 0 16 16">
+                                <button class="btn btn-opacity-0 col-5" id="btnResetAudio">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#F24B0F" class="bi bi-stop-fill" viewBox="0 0 16 16">
                                         <path d="M5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11V5A1.5 1.5 0 0 1 5 3.5z"/>
                                       </svg>
                                 </button>
@@ -89,7 +89,7 @@
         <script src="cordova.js"></script>
 
         <!-- Script para o Bootstrap -->
-        <script src="js/node/bootstrap.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
 
         <!-- Scripts para o pdf.js -->
         <script src="js/node/pdf.js"></script>
