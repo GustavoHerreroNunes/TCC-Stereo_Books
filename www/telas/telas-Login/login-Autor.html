@@ -29,16 +29,15 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/custom.css">
+        <link rel="stylesheet" href="../styles/custom.css">
 
-        <script src="cordova.js"></script>
-        <script src="js/index.js"></script>
-        <title>Hello World</title>
+        <script src="../cordova.js"></script>
+        <title>Login Autor - StereoBooks</title>
     </head>
     <body class="bg-dark"><!--opções de login/cadastro-->
         <div class="container">
@@ -50,16 +49,25 @@
                     <input type="email" class="form-control" id="txtEmail">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleForControlInput1">Senha</label>
+                    <label for="exampleForControlInput1">Senha:</label>
                     <input type="password" class="form-control" id="txtSenha">
                 </div>
               </form>
              <div class="d-grid gap-3 col-10 mx-auto"> 
-                 <button type="button" class="btn btn-pastel-green text-light btn-lg">Login</button>
+                 <button type="button" class="btn btn-pastel-green text-light btn-lg" id="btnLogin">Login</button>
                  <a href="" class="text-center">Esqueceu a senha?</a>
              </div></br></br></br></br>
-                <p class="text-center">Não possui uma conta? <a href="telas-Cadastro/cadastro-Leitor-1.html">cadastre-se</a></p>
+                <p class="text-center">Não possui uma conta? <a href="../telas-Cadastro/cadastro-Autor-1.html">Cadastre-se</a></p>
         </div>
+
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+    
+        <script src="../js/firebase.js"></script>
+        <script src="../js/loginAutor.js"></script>
     </body>
 
 </html>
