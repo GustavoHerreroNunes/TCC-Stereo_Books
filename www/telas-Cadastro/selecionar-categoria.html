@@ -29,7 +29,7 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -42,7 +42,7 @@
         <!--Menu flutuante no rodapé-->
         <nav class="navbar" style="position: fixed;left: 50%;transform: translateX(-50%);bottom: 0.5rem;"
     >
-            <a class="btn btn-pastel-blue text-light d-grid gap-3 col-20 mx-auto disabled" id="btnCat" style="text-decoration: none;" href="">Avançar<!--botão off até que as categorias sejam selecionadas--></a>
+            <a class="btn btn-pastel-blue text-light d-grid gap-3 col-20 mx-auto disabled" id="btnAvancar" style="text-decoration: none;" href="">Avançar<!--botão off até que as categorias sejam selecionadas--></a>
             
         </nav>
         <div class="container">
@@ -50,59 +50,8 @@
             <img class="d-grid gap-2 col-3 mx-auto" src="../img/SB-logo-200.png" alt="Stereo Books Logo" /><br>
             <p class="text-center text-secondary">Selecione pelo menos três categorias de livro</p></br>
                 <!--Categorias de livros-->
-          <div class="container">
-            <div class="row gap-4">
-                <div class="col">
-                    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck1"> <img class="d-grid gap-2 col-10 mx-auto" src="img/SB-logo-200.png" alt="Stereo Books Logo" />Checkbox 1</label>
-                </div>
-                <div class="col">
-                    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck2"> <img class="d-grid gap-2 col-10 mx-auto" src="img/SB-logo-200.png" alt="Stereo Books Logo" />Checkbox 2</label>
-                </div>
-                <div class="col">
-                    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck3"> <img class="d-grid gap-2 col-10 mx-auto" src="img/SB-logo-200.png" alt="Stereo Books Logo" />Checkbox 2</label>
-                </div>
-                <div class="col">
-                    <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck4"> <img class="d-grid gap-2 col-10 mx-auto" src="img/SB-logo-200.png" alt="Stereo Books Logo" />Checkbox 2</label>
-                </div>
-                <div class="col">
-                    <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck5"> <img class="d-grid gap-2 col-10 mx-auto" src="img/SB-logo-200.png" alt="Stereo Books Logo" />Checkbox 2</label>
-                </div>
-                <div class="col">
-                    <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck6"> <img class="d-grid gap-2 col-10 mx-auto" src="img/SB-logo-200.png" alt="Stereo Books Logo" />Checkbox 2</label>
-                </div>
-            </div></br>    
-            <div class="row gap-4">
-                <div class="col">
-                    <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck7"> <img class="d-grid gap-2 col-10 mx-auto" src="img/SB-logo-200.png" alt="Stereo Books Logo" />Checkbox 2</label>
-                </div>
-                <div class="col">
-                    <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck8"> <img class="d-grid gap-2 col-10 mx-auto" src="img/SB-logo-200.png" alt="Stereo Books Logo" />Checkbox 2</label>
-                </div>
-                <div class="col">
-                    <input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck9"> <img class="d-grid gap-2 col-10 mx-auto" src="img/SB-logo-200.png" alt="Stereo Books Logo" />Checkbox 2</label>
-                </div>
-                <div class="col">
-                    <input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck10"> <img class="d-grid gap-2 col-10 mx-auto" src="img/SB-logo-200.png" alt="Stereo Books Logo" />Checkbox 2</label>
-                </div>
-                <div class="col">
-                    <input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck11"> <img class="d-grid gap-2 col-10 mx-auto" src="img/SB-logo-200.png" alt="Stereo Books Logo" />Checkbox 2</label>
-                </div>
-                <div class="col">
-                    <input type="checkbox" class="btn-check" id="btncheck12" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck12"> <img class="d-grid gap-2 col-10 mx-auto" src="img/SB-logo-200.png" alt="Stereo Books Logo" />Checkbox 2</label>
-                </div>
-            </div>
+            <div class="container" id="categorias">
+                 
             </div>
         </div>
           
@@ -115,7 +64,7 @@
         <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
     
         <script src="../js/firebase.js"></script>
-        <!-- <script src="../js/selecionar-categoria.js"></script> -->
+        <script src="../js/selecionar_categoria.js"></script>
     </body>
 
 </html>
