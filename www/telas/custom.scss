@@ -1,15 +1,14 @@
-@import "node_modules/bootstrap/scss/functions";//importando as fuctions do scss
+@import "../../node_modules/bootstrap/scss/functions";//importando as fuctions do scss
 
 $input-border-color:#9EC7E4;
 $form-label-color:#9EC7E4;
 $cyan:#9EC7E4;
 $secondary: #F59762;
 $primary:#9EC7E4;
-$dark: #EDEDED;
-$border-color:#A0DEB9;
 
-@import "node_modules/bootstrap/scss/variables";
-@import "node_modules/bootstrap/scss/mixins";
+
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
 
 $stereo-books-colors:(
 
@@ -22,6 +21,10 @@ $stereo-books-colors:(
 );
 
 $theme-colors: map-merge($theme-colors, $stereo-books-colors);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+$utilities-colors: map-merge($utilities-colors, $theme-colors-rgb);
+$utilities-text-colors: map-loop($utilities-colors, rgba-css-var, "$key", "text");
+$utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
 
 $position-values-new: (
   0: 0,
@@ -39,14 +42,15 @@ $position-values-new: (
 
 $position-values: map-merge($position-values , $position-values-new);
 
-@import "node_modules/bootstrap/scss/root";
-@import "node_modules/bootstrap/scss/reboot";
-@import "node_modules/bootstrap/scss/type";
-@import "node_modules/bootstrap/scss/images";
-@import "node_modules/bootstrap/scss/containers";
-@import "node_modules/bootstrap/scss/grid";
-@import "node_modules/bootstrap/scss/buttons";
-@import "node_modules/bootstrap/scss/forms";
-@import "node_modules/bootstrap/scss/transitions";
+@import "../../node_modules/bootstrap/scss/root";
+@import "../../node_modules/bootstrap/scss/reboot";
+@import "../../node_modules/bootstrap/scss/type";
+@import "../../node_modules/bootstrap/scss/images";
+@import "../../node_modules/bootstrap/scss/containers";
+@import "../../node_modules/bootstrap/scss/grid";
+@import "../../node_modules/bootstrap/scss/buttons";
+@import "../../node_modules/bootstrap/scss/forms";
+@import "../../node_modules/bootstrap/scss/transitions";
+@import "../../node_modules/bootstrap/scss/utilities";
 
-@import "node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";

@@ -34,13 +34,13 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/custom.css">
+        <link rel="stylesheet" type="text/css" href="../../node_modules/bootstrap/dist/css/custom.css">
         <!--owl carousel cdnjs library-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="cordova.js"></script>
         <script src="js/index.js"></script>
-        <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
         <!--cdnjs Jquery-->  
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <!--owl carousel cdnjs library-->
@@ -49,7 +49,7 @@
         <title>Hello World</title>
     </head>
     
-    <body class="bg-dark">
+    <body class="bg-grayish">
         <nav style="margin-bottom: 10px; margin-top: 5px;">    
             <div class="d-flex gap-2 ">
                 <img style="max-width: 80px;" src="img/SB-logo-200.png" alt="Stereo Books Logo" />
@@ -60,7 +60,7 @@
          <!--Carrossel-Destaque-->
          <section>   
          <div class="container">
-           <h5>Destaque</h5>
+           <h5 class="text-pastel-blue">Destaque</h5>
                   <div class="row">
                     <div class="owl-carousel owl-theme">
                       <div class="item">
@@ -70,7 +70,7 @@
                   </div>
               </div>   
               <div class="container">
-                <h5>Recomendado</h5>
+                <h5 class="text-pastel-blue">Recomendado</h5>
                        <div class="row">
                          <div class="owl-carousel owl-theme">
                            <div class="item">
@@ -80,7 +80,7 @@
                        </div>
                     </div>                 
                   <div class="container">
-                    <h5>Fantasia</h5>
+                    <h5 class="text-pastel-blue">Fantasia</h5>
                            <div class="row">
                              <div class="owl-carousel owl-theme">
                                <div class="item">
@@ -95,20 +95,51 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
+                        
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <p>Modal body text goes here.</p>
+                        <div class="card mb-3" style="max-width: 540px;">
+                          <div class="row g-0">
+                            <div class="row-md-6 mt-2 d-flex justify-content-center">
+                              <img class="border" src="img/pp.jpg" style="max-width: 150px;">
+                            </div>
+                            <div class="row-md-6">
+                              <div class="card-body">
+                                <h5 class="card-title">O Pequeno Principe</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur iaculis quis turpis et tristique. Phasellus sed nunc a turpis mollis congue ut non orci. Nunc eu vulputate augue.<span id="pontos">...</span><span id="verMaistxt" style="display: none;"> Nam laoreet laoreet aliquam. Proin nec urna sed justo efficitur tincidunt. Donec consequat justo vitae massa cursus, sit amet sagittis nibh pharetra. Fusce vehicula faucibus aliquam. Sed tincidunt tortor nunc, ac imperdiet magna porttitor non. In tincidunt lacus a lacinia faucibus. Aenean vitae aliquet tellus, ut dapibus nunc. Donec ultrices sapien accumsan nisi semper, a mattis lacus dignissim. Suspendisse potenti.</span></p>
+                                <a href="#" style="text-decoration: none;" onclick="verMais()" id="verMaisbtn">Ver mais</a>
+                                <p class="card-text"><small class="text-muted">Autor:</small></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-pastel-green text-light">Adquirir</button>
                       </div>
                     </div>
                   </div>
                 </section>  
-                
+       <!--Script ver mais-->
+       <script>
+         function verMais(){
+           var ponto= document.getElementById("pontos");
+           var btn= document.getElementById("verMaisbtn");
+           var texto= document.getElementById("verMaistxt");
+
+           if(ponto.style.display=== "none"){
+              ponto.style.display="inline";
+              btn.innerHTML= "ver mais";
+              texto.style.display= "none";
+           }
+           else{
+              ponto.style.display="none";
+              btn.innerHTML= "ver menos";
+              texto.style.display= "inline"
+           }
+         }
+       </script>         
         
        <!--Script owl carousel-->
       <script>
