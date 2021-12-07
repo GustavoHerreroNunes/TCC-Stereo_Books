@@ -18,7 +18,7 @@ var login = {
         console.log("Busca Iniciada");
         var Email = document.getElementById('txtEmail').value;
         var Senha = document.getElementById('txtSenha').value;
-        var logged = 0;
+        var docId = null;
 
         var db = firebase.firestore();
         var collCadastros = db.collection('editores');
@@ -27,13 +27,13 @@ var login = {
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 if(Email == doc.data().Email && Senha == doc.data().Senha) {
-                    logged++;
+                    docId = doc.id;
                 }
                 
             });
-            if(logged == 1) {
+            if(docId != null) {
                 alert('Editor logado');
-                window.location.href = "../biblioteca.html";
+                window.location.href = "../biblioteca.html?user=" + docId;
             }else {
                 alert('Email ou Senha inválidos')
             }
