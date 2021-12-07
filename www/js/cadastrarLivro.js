@@ -153,6 +153,7 @@ var app = {
         let registISBN = document.getElementById("txbISBN").value;
         let registNumPages = document.getElementById("txbNumPages").value;
         let registClassIndicativa = document.getElementById("slctClassIndicativa").value;
+        let registSinopse = document.getElementById("txbSinopse").value;
         
         var btnCategoria = document.getElementsByName("btnCategoria");
         var registCategoria = [];
@@ -184,6 +185,7 @@ var app = {
             isbn: registISBN,
             num_pages: registNumPages,
             classificacao_indicativa: registClassIndicativa,
+            sinopse: registSinopse,
             categoria: registCategoria,
             capa: app.urls.capa,
             pdf: app.urls.pdf
