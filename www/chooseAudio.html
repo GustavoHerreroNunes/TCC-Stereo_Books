@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css">
+
+    <!-- Title -->
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="p-4 pb-5 mb-4">
+
+            <h1 class="text-center" style="font-size:30pt">Áudio</h1>
+            <p class="text-center fs-6">Escholha áudios que serão integrados ao livro</p>
+
+            <div class="card mt-5">
+                
+                <form name="frmChooseAudio" id="frmChooseAudio">
+                    <div class="form-group">
+                        <div class="card-body border border-white-50 rounded mb-2">
+                            <div class="" id="form1">
+                                <label for="chooseAudio1" class="ps-0 pt-3 fs-6 text-secondary form-label">Audios disponiveis:<span class="text-danger">*</span></label>
+                                <select name="chooseudio1" id="chooseAudio1" class="form-control">
+                                    <option selected disabled>Selecione o audio desejado</option>
+                                </select>
+                                <label for="inputPage1"class="ps-0 pt-3 fs-6 text-secondary form-label">Em qual página o audio será iniciado:<span class="text-danger">*</span></label>
+                                <input type="number" value="0" min="0" name="inputPage1" id="inputPage1" placeholder="Número da Página" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <button type="button" class="btn btn-primary mb-2" id="btnAddNewForm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                    </svg>
+                    Novo Formulário
+                </button>
+
+                <a class="btn btn-primary mb-2"" href="uploadSound.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                    </svg>
+                    Cadastrar Novo Audio
+                </a>
+
+                <button type="button" name="btnSend" id="btnSend" class="btn btn-primary mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89.471-1.178-1.178.471L5.93 9.363l.338.215a.5.5 0 0 1 .154.154l.215.338 7.494-7.494Z"/>
+                    </svg>  
+                    Enviar
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Scripts base para o Cordova-->
+    <script src="cordova.js"></script>
+
+    <!--Script base para o Bootstrap-->
+    <script src="./styles/bootstrap/js/bootstrap.js"></script>
+
+    <!--Scripts base para o firebase--> 
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
+    <script src="./js/firebase/configuration.js"></script>
+    
+    <!--Script base para o JQuery-->
+    <script src="js/jquery.js"></script>
+
+    <!--Script base para este arquivo-->
+    <script src="js/chooseAudio.js"></script>
+    
+</body>
+</html>
