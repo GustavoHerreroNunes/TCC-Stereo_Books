@@ -31,6 +31,20 @@ var biblioteca = {
             
             if(biblioteca.buscarId > biblioteca.categorias_leitor.num){
 
+                try{
+                    document.querySelectorAll(".item").forEach((element) => {
+                        console.log("Adicionando evento ao elemnto: " + element);
+                        element.addEventListener("click", () => {
+                            biblioteca.changeModalInfos(element);
+                        });
+                    });
+
+                    document.getElementById("btnVerMais").addEventListener("click", biblioteca.verMais);
+
+                }catch(error){
+                    console.log("Erro ao adicionar evento: " + error);
+                }
+
                 biblioteca.initializeCarousel();
                 clearInterval(intervalIdBuscar);
             }
@@ -102,7 +116,7 @@ var biblioteca = {
                     if(booksToSearch == "all"){
                         if(categ == categoriaName){
                             let rowContent = 
-                                             "<div class='item'>" +
+                                             "<div class='item' data-book-id='" + doc.id + "'>" +
                                              "  <a href='#modalTeste' data-bs-toggle='modal' data-bs-target='#modalTeste'><img src='" + doc.data().capa + "' style='max-width: 200px;' ></a>" +
                                              "</div>";
                             
@@ -112,7 +126,7 @@ var biblioteca = {
                         if(categ == categoriaName && booksSearched < booksToSearch){
                             booksSearched++;
                             let rowContent = 
-                                             "<div class='item'>" +
+                                             "<div class='item' data-book-id='" + doc.id + "'>" +
                                              "  <a href='#modalTeste' data-bs-toggle='modal' data-bs-target='#modalTeste'><img src='" + doc.data().capa + "' style='max-width: 200px;' ></a>" +
                                              "</div>";
                             
@@ -123,10 +137,70 @@ var biblioteca = {
                 
             })
             biblioteca.buscarId++;
+            console.log("Alô?");
         })
         .catch((error) => {
             console.log("Erro ao consultar documento: " + error);
         })
+    },
+
+    //Método que altera as informações do modal de acordo com o livro
+    changeModalInfos: function(element){
+        console.log("Mudando modal");
+        var bookId = element.getAttribute("data-book-id");
+
+        var db = firebase.firestore();
+        var bookRef = db.collection("livros").doc(bookId);
+
+        bookRef.get().then((doc) => {
+            if (doc.exists) {
+                document.getElementById("pontos").style.display="inline";
+                document.getElementById("btnVerMais").innerHTML= "Ver mais";
+                document.getElementById("txtVerMais").style.display= "none";
+
+                var titulo = doc.data().titulo,
+                    subtitulo = doc.data().subtitulo,
+                    sinopse = doc.data().sinopse,
+                    autor = doc.data().autor,
+                    capa = doc.data().capa;
+                
+                document.getElementById("card-titulo").innerHTML = titulo;
+                document.getElementById("card-subtitulo").innerHTML = subtitulo;
+                document.getElementById("card-autor").innerHTML = autor;
+                document.getElementById("card-capa").setAttribute("src", capa);
+                if(sinopse.length > 180){
+                    var firstPart = sinopse.substr(0, 180);
+                    var secondPart = sinopse.substr(180);
+                    document.getElementById("card-sinopse").innerHTML = firstPart;
+                    document.getElementById("txtVerMais").innerHTML = secondPart;
+                }else{
+                    document.getElementById("card-sinopse").innerHTML = sinopse;
+                }
+            } else {
+                console.log("Livro não cadastrado");
+                window.location.href = window.location.href;
+            }
+        }).catch((error) => {
+            console.log("Erro ao buscar categorias do usuário: " + error);
+        });
+    },
+
+    //Método para o botão de ver mais
+    verMais: function(){
+        var ponto= document.getElementById("pontos");
+           var btn= document.getElementById("btnVerMais");
+           var texto= document.getElementById("txtVerMais");
+
+           if(ponto.style.display=== "none"){
+              ponto.style.display="inline";
+              btn.innerHTML= "Ver mais";
+              texto.style.display= "none";
+           }
+           else{
+              ponto.style.display="none";
+              btn.innerHTML= "Ver menos";
+              texto.style.display= "inline"
+           }
     },
 
     //Método que inicializa os carroséis 
