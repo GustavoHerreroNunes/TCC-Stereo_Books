@@ -48,8 +48,8 @@ var app = {
 
                 document.getElementById("row."+rowId).innerHTML += "<div class='col' id='col." + categorias[categoriasAdicionadas].id + "'>"
                                                                     + "<input type='checkbox' class='btn-check' name='btnCategoria' value='" + categorias[categoriasAdicionadas].nome + "' id='" + categorias[categoriasAdicionadas].id + "' autocomplete='off'>"
-                                                                    + "<label class='btn btn-outline-primary' for='" + categorias[categoriasAdicionadas].id + "'>"
-                                                                        + "<img class='d-grid gap-2 col-10 mx-auto' src='" + categorias[categoriasAdicionadas].icon.normal + "' alt='Stereo Books Logo' />"
+                                                                    + "<label class='btn btn-outline-primary' for='" + categorias[categoriasAdicionadas].id + "' style='min-width: 100px;'>"
+                                                                        + "<img class='d-grid gap-2 col-6 mx-auto' src='" + categorias[categoriasAdicionadas].icon.normal + "' alt='Stereo Books Logo' />"
                                                                         + categorias[categoriasAdicionadas].nome
                                                                     + "</label>"
                                                                 + "</div>";
@@ -61,6 +61,11 @@ var app = {
                 }
 
             });
+
+            console.log("Resto por 2", categoriasAdicionadas % 2);
+            if((categoriasAdicionadas % 2) != 0){
+                document.getElementById("row."+rowId).innerHTML += "<div class='col'></div>";
+            }
 
             console.log('[categorias]', categorias);
 
