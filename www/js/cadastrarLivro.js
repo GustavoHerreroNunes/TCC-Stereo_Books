@@ -192,7 +192,7 @@ var app = {
         })
         .then( (docRef) => {
             alert("Livro cadastrado com sucesso!");
-            window.location.href = "uploadSound.html?livro=" + docRef.id;
+            window.location.href = "chooseAudio.html?livro=" + docRef.id;
         })
         .catch( (error) => {
             alert("Erro ao cadastrar livro");
