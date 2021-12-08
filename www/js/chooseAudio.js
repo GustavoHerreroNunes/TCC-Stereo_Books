@@ -53,7 +53,7 @@ app = {
 
         html = '<div class="form-group">\
             <div class="card-body border border-white-50 rounded mb-2">\
-                <div class="" id="form1">\
+                <div class="" id="form' + app.var.count + '">\
                         <label for="chooseAudio' + app.var.count + '" class="ps-0 pt-3 fs-6 text-secondary form-label">Audios disponiveis:<span class="text-danger">*</span></label>\
                         <select name="chooseudio' + app.var.count + '" id="chooseAudio' + app.var.count + '" class="chooseAudio form-control">\
                             <option selected disabled>Selecione o audio desejado</option>\
