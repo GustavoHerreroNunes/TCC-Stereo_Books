@@ -80,8 +80,8 @@ app = {
 
         var db = firebase.firestore();
 
-        // var docLivro = db.collection("livros").doc("BiLUD5HY4BM2fsuYXIG5")
-        //     .collection("playlist");
+        var docLivro = db.collection("livros").doc("BiLUD5HY4BM2fsuYXIG5")
+            .collection("playlist");
 
         for(app.var.countForm; app.var.countForm<=app.var.count; app.var.countForm++) {
             var audioSelected = document.getElementById("chooseAudio" + app.var.countForm).value;
@@ -89,10 +89,7 @@ app = {
             
             console.log("Audio Selected: " + audioSelected + " | Page:" + page);
             
-            // var docPlaylist = docLivro.doc(app.var.countForm);
-
-            var docLivro = db.collection("livros").doc("BiLUD5HY4BM2fsuYXIG5")
-            .collection("playlist").doc(app.var.countForm);
+            var docPlaylist = docLivro.doc(app.var.countForm);
     
             docLivro.set({
                 audio_id: audioSelected,
