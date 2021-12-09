@@ -181,7 +181,7 @@ var biblioteca = {
                 }
                 document.frmBookData.txbBookId.value = id;
                 document.frmBookData.txbBookUrl.value = url;
-                biblioteca.generateDownloadURL(url);
+                biblioteca.generateDownloadURL("https://firebasestorage.googleapis.com/v0/b/cadastro-logintcc.appspot.com/o/livros%2FSaraiva%2FA_Tempestade%2Fpdf.pdf");
                 // document.getElementById("linkToDownload").href = url;
                 // document.getElementById("imgToDownload").src = url;
 
@@ -200,9 +200,45 @@ var biblioteca = {
         storage.refFromURL(url).getDownloadURL().then(function(urlToDownload) {          
             // Or inserted into an <img> element:
             document.getElementById("imgToDownload").src = urlToDownload;
+            console.log("Gerando link para download");
+            document.getElementById("linkToDownload").href = urlToDownload;
+
+            // This can be downloaded directly:
+            // var xhr = new XMLHttpRequest();
+            // xhr.responseType = 'blob';
+            // xhr.onload = function(event) {
+            //     var blob = xhr.response;
+            //     console.log(blob);
+            // };
+            // xhr.open('GET', urlToDownload);
+            // xhr.send();
 
           }).catch(function(error) {
             // Handle any errors
+            switch (error.code) {
+                case 'storage/object-not-found':
+                  // File doesn't exist
+                  console.log("Erro: Arquivo não encontrado");
+                  break;
+            
+                case 'storage/unauthorized':
+                  // User doesn't have permission to access the object
+                  console.log("Erro: Usuário não tem permissão para acessar o arquivo");
+
+                  break;
+            
+                case 'storage/canceled':
+                  // User canceled the upload
+                  console.log("Erro: Upload cancelado");
+
+                  break;
+            
+                case 'storage/unknown':
+                  // Unknown error occurred, inspect the server response
+                  console.log("Erro: Erro desconhecido");
+
+                  break;
+              }
           });
     },
 
