@@ -71,8 +71,8 @@ app = {
     getBookId: function() {
         var string_url = window.location.href;
         var url = new URL(string_url);
-        bookId = url.searchParams.get("livro");
-        console.log("BookId: " + bookId);
+        app.var.bookId = url.searchParams.get("livro");
+        console.log("BookId: " + app.var.bookId);
     },
 
     createSubcollection: function() {
@@ -88,9 +88,9 @@ app = {
             
             console.log("Audio Selected: " + audioSelected + " | Page:" + page);
             
-            var docPlaylist = docLivro.doc(app.var.countForm);
+            var docPlaylist = docLivro.doc("play" + app.var.countForm);
     
-            docLivro.set({
+            docPlaylist.set({
                 audio_id: audioSelected,
                 pagina: page
             }).
