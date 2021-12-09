@@ -33,7 +33,7 @@ var login = {
             });
             if(docId != null) {
                 alert('Editor logado');
-                window.location.href = "../biblioteca.html?user=" + docId;
+                window.location.href = "../estante-editora.html?user=" + docId;
             }else {
                 alert('Email ou Senha inválidos')
             }
