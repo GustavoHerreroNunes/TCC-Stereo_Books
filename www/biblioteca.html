@@ -114,7 +114,17 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-pastel-green text-light">Adquirir</button>
+                  <form name="frmBookData">
+                    <input type="hidden" name="txbBookId" value="" id="txbBookId">
+                    <input type="hidden" name="txbBookUrl" value="" id="txbBookUrl">
+                  </form>
+                  <button type="button" class="btn btn-pastel-green text-light" id="btnAdquirir">
+                    <a id="linkToDownload" href="#" download style="text-decoration:none">
+                      <img id="imgToDownload" src="#">
+                      Adquirir
+                    </a>
+                  </button>
+                  <button type="button" class="btn btn-pastel-blue text-light" id="btnLer" style="display: none;">Ler</button>
                 </div>
               </div>
             </div>

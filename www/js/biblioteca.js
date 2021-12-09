@@ -40,6 +40,7 @@ var biblioteca = {
                     });
 
                     document.getElementById("btnVerMais").addEventListener("click", biblioteca.verMais);
+                    document.getElementById("btnAdquirir").addEventListener("click", biblioteca.adquirirLivro);
 
                 }catch(error){
                     console.log("Erro ao adicionar evento: " + error);
@@ -162,7 +163,9 @@ var biblioteca = {
                     subtitulo = doc.data().subtitulo,
                     sinopse = doc.data().sinopse,
                     autor = doc.data().autor,
-                    capa = doc.data().capa;
+                    capa = doc.data().capa,
+                    url = doc.data().pdf,
+                    id = doc.id;
                 
                 document.getElementById("card-titulo").innerHTML = titulo;
                 document.getElementById("card-subtitulo").innerHTML = subtitulo;
@@ -176,6 +179,12 @@ var biblioteca = {
                 }else{
                     document.getElementById("card-sinopse").innerHTML = sinopse;
                 }
+                document.frmBookData.txbBookId.value = id;
+                document.frmBookData.txbBookUrl.value = url;
+                biblioteca.generateDownloadURL(url);
+                // document.getElementById("linkToDownload").href = url;
+                // document.getElementById("imgToDownload").src = url;
+
             } else {
                 console.log("Livro não cadastrado");
                 window.location.href = window.location.href;
@@ -183,6 +192,18 @@ var biblioteca = {
         }).catch((error) => {
             console.log("Erro ao buscar categorias do usuário: " + error);
         });
+    },
+
+    generateDownloadURL: function(url){
+        var storage = firebase.storage();
+
+        storage.refFromURL(url).getDownloadURL().then(function(urlToDownload) {          
+            // Or inserted into an <img> element:
+            document.getElementById("imgToDownload").src = urlToDownload;
+
+          }).catch(function(error) {
+            // Handle any errors
+          });
     },
 
     //Método para o botão de ver mais
@@ -201,6 +222,38 @@ var biblioteca = {
               btn.innerHTML= "Ver menos";
               texto.style.display= "inline"
            }
+    },
+
+    //Método que faz os procedimentos para a aquisição do livro
+    adquirirLivro: function(){
+        var url = document.frmBookData.txbBookUrl,
+            id = document.frmBookData.txbBookId;
+        // var intervalIdDownload = null;
+        // intervalIdDownload = setInterval( () => {
+        //     console.log("[buscarId]", biblioteca.buscarId);
+            
+        //     if(biblioteca.buscarId > biblioteca.categorias_leitor.num){
+
+        //         try{
+        //             document.querySelectorAll(".item").forEach((element) => {
+        //                 console.log("Adicionando evento ao elemnto: " + element);
+        //                 element.addEventListener("click", () => {
+        //                     biblioteca.changeModalInfos(element);
+        //                 });
+        //             });
+
+        //             document.getElementById("btnVerMais").addEventListener("click", biblioteca.verMais);
+        //             document.getElementById("btnAdquirir").addEventListener("click", biblioteca.adquirirLivro);
+
+        //         }catch(error){
+        //             console.log("Erro ao adicionar evento: " + error);
+        //         }
+
+        //         biblioteca.initializeCarousel();
+        //         clearInterval(intervalIdBuscar);
+        //     }
+        // });
+        
     },
 
     //Método que inicializa os carroséis 

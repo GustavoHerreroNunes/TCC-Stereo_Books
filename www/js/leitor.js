@@ -31,7 +31,17 @@ var app = {
         })
         .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
-            window.location.href = "selecionar-categoria.html?user=" + docRef.id;
+            var minhaEstanteRef = db.collection("leitores").doc(docRef.id).collection('minha-estante');    
+
+            minhaEstanteRef
+                .add({})
+                .then(function () {
+                    console.log('Minha Estante adicionada');
+                    window.location.href = "selecionar-categoria.html?user=" + docRef.id;
+                })
+                .catch(function (error) {
+                    console.error('Erro ao adicionar Minha Estante: ', error);
+                });
         })
         .catch((error) => {
             console.error("Error adding document: ", error);
