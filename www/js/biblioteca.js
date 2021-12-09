@@ -31,6 +31,7 @@ var biblioteca = {
             
             if(biblioteca.buscarId > biblioteca.categorias_leitor.num){
 
+                biblioteca.initializeCarousel();
                 try{
                     document.querySelectorAll(".item").forEach((element) => {
                         console.log("Adicionando evento ao elemnto: " + element);
@@ -46,7 +47,6 @@ var biblioteca = {
                     console.log("Erro ao adicionar evento: " + error);
                 }
 
-                biblioteca.initializeCarousel();
                 clearInterval(intervalIdBuscar);
             }
         }
