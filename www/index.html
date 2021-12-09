@@ -10,15 +10,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!--CSS necessário-->
-        <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/custom.css">
 
         <title>Upload Livro</title>
     </head>
-    <body>
+    <body class="bg-grayish">
         <div class="container">
             <div class="p-4 pb-5 mb-4">
+              <a href="estante-editora.html">Voltar</a>
               <form name="frmCadastrarLivro">
-                <h1 class="text-center" style="font-size:30pt">Livro</h1>
+                <h1 class="text-center text-pastel-blue" style="font-size:30pt">Livro</h1>
                 <p class="text-center fs-6">Preencha algumas informações sobre o livro para ajudar seus leitores a encontrá-lo</p>
       
                 <div class="row">
@@ -75,25 +76,56 @@
                 <div class="row">
                   <label class="ps-0 pt-3 fs-6 text-secondary form-label">Categorias:<span class="text-danger">*</span></label>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <input type="checkbox" name="btnCategoria" id="btnCategAventura" value="Aventura" autocomplete="off" class="btn-check">
-                        <label class="btn btn-outline-success" for="btnCategAventura">Aventura</label>
+                <div class="row gap-2 mb-2">
+                    <div class="col-3 d-flex justify-content-center">
+                        <input type="checkbox" style="min-width: 100px;" name="btnCategoria" id="btnCategAventura" value="Aventura" autocomplete="off" class="btn-check">
+                        <label class="btn btn-outline-success btn-sm" style="min-width: 75px;" for="btnCategAventura">Aventura</label>
                     </div>
-                    
-                    <div class="col">
-                        <input type="checkbox" name="btnCategoria" id="btnCategFantasia" value="Fantasia" autocomplete="off" class="btn-check">
-                        <label class="btn btn-outline-primary" for="btnCategFantasia">Fantasia</label>
+                    <div class="col-3 d-flex justify-content-center">
+                        <input type="checkbox"  name="btnCategoria" id="btnCategFantasia" value="Fantasia" autocomplete="off" class="btn-check">
+                        <label class="btn btn-outline-primary btn-sm" style="min-width: 75px;" for="btnCategFantasia">Fantasia</label>
                     </div>
-
-                    <div class="col">
+                    <div class="col-3 d-flex justify-content-center">
                         <input type="checkbox" name="btnCategoria" id="btnCategSuspense" value="Suspense" autocomplete="off" class="btn-check">
-                        <label class="btn btn-outline-dark" for="btnCategSuspense">Suspense</label>
+                        <label class="btn btn-outline-dark btn-sm"  style="min-width: 75px;"for="btnCategSuspense">Suspense</label>
                     </div>
-
-                    <div class="col">
+                </div>
+                <div class="row gap-2 mb-2">
+                    <div class="col-3 d-flex justify-content-center">
                         <input type="checkbox" name="btnCategoria" id="btnCategMisterio" value="Mistério" autocomplete="off" class="btn-check">
-                        <label class="btn btn-outline-danger" for="btnCategMisterio">Mistério</label>
+                        <label class="btn btn-outline-danger btn-sm" style="min-width: 75px;" for="btnCategMisterio">Mistério</label>
+                    </div>
+                    <div class="col-3 d-flex justify-content-center">
+                      <input type="checkbox" name="btnCategoria" id="btnCategRomance" value="Romance" autocomplete="off" class="btn-check">
+                      <label class="btn btn-outline-danger btn-sm" style="min-width: 75px;" for="btnCategRomance">Romance</label>
+                    </div>
+                    <div class="col-3 d-flex justify-content-center">
+                      <input type="checkbox" name="btnCategoria" id="btnCategFabula" value="Fabula" autocomplete="off" class="btn-check">
+                      <label class="btn btn-outline-danger btn-sm" style="min-width: 75px;" for="btnCategFabula">Fábula</label>
+                    </div>
+                  </div>
+                  <div class="row gap-2 mb-2">
+                    <div class="col-3 d-flex justify-content-center">
+                     <input type="checkbox" name="btnCategoria" id="btnCategSatira" value="Satira" autocomplete="off" class="btn-check">
+                      <label class="btn btn-outline-danger btn-sm" style="min-width: 75px;" for="btnCategSatira">Sátira</label>
+                    </div>
+                    <div class="col-3 d-flex justify-content-center">
+                      <input type="checkbox" name="btnCategoria" id="btnCategHorror" value="Horror" autocomplete="off" class="btn-check">
+                      <label class="btn btn-outline-danger btn-sm" style="min-width: 75px;" for="btnCategHorror">Horror</label>
+                    </div>
+                    <div class="col-3 d-flex justify-content-center">
+                      <input type="checkbox" name="btnCategoria" id="btnCategPoesia" value="Poesia" autocomplete="off" class="btn-check">
+                      <label class="btn btn-outline-danger btn-sm" style="min-width: 75px;" for="btnCategPoesia">Poesia</label>
+                    </div>
+                  </div>
+                  <div class="row gap-2 mb-2">
+                    <div class="col-3 d-flex justify-content-center">
+                      <input type="checkbox" name="btnCategoria" id="btnCategInfantil" value="Infantil" autocomplete="off" class="btn-check">
+                      <label class="btn btn-outline-danger btn-sm" style="min-width: 75px;" for="btnCategInfantil">Infantil</label>
+                    </div>
+                    <div class="col-3 d-flex justify-content-center">
+                      <input type="checkbox" name="btnCategoria" id="btnCategSci-fi" value="Sci-fi" autocomplete="off" class="btn-check">
+                      <label class="btn btn-outline-danger btn-sm" style="min-width: 75px;" for="btnCategSci-fi">Sci-fi</label>
                     </div>
                 </div>
                 
@@ -118,7 +150,7 @@
                     Limpar
                   </button>
                   
-                  <button type="button" name="btnCadastrar" id="btnCadastrar" class="btn btn-primary col-4 m-3">
+                  <button type="button" name="btnCadastrar" id="btnCadastrar" class="btn btn-pastel-green text-light col-4 m-3">
                     Cadastrar
                   </button>
 
