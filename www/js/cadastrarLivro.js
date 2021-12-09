@@ -153,6 +153,7 @@ var app = {
         let registISBN = document.getElementById("txbISBN").value;
         let registNumPages = document.getElementById("txbNumPages").value;
         let registClassIndicativa = document.getElementById("slctClassIndicativa").value;
+        let registSinopse = document.getElementById("txbSinopse").value;
         
         var btnCategoria = document.getElementsByName("btnCategoria");
         var registCategoria = [];
@@ -184,13 +185,14 @@ var app = {
             isbn: registISBN,
             num_pages: registNumPages,
             classificacao_indicativa: registClassIndicativa,
+            sinopse: registSinopse,
             categoria: registCategoria,
             capa: app.urls.capa,
             pdf: app.urls.pdf
         })
         .then( (docRef) => {
             alert("Livro cadastrado com sucesso!");
-            window.location.href = "uploadSound.html";
+            window.location.href = "chooseAudio.html?livro=" + docRef.id;
         })
         .catch( (error) => {
             alert("Erro ao cadastrar livro");
