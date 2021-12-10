@@ -10,17 +10,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/custom.css">
 
     <!-- Title -->
     <title>Document</title>
 </head>
-<body>
+<body class="bg-grayish">
 
     <div class="container">
         <div class="p-4 pb-5 mb-4">
 
-            <h1 class="text-center" style="font-size:30pt">Áudio</h1>
+            <h1 class="text-center text-pastel-orange" style="font-size:30pt">Áudio</h1>
             <p class="text-center fs-6">Escholha áudios que serão integrados ao livro</p>
 
             <div class="card mt-5">
@@ -42,22 +42,23 @@
                 </form>
 
                 <!-- Buttons -->
-                <button type="button" class="btn btn-primary mb-2" id="btnAddNewForm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                
+                <button type="button" class="btn btn-primary m-2" id="btnAddNewForm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EDEDED" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                     </svg>
                     Novo Formulário
                 </button>
 
-                <a class="btn btn-primary mb-2"" href="uploadSound.html">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                <a class="btn btn-primary m-2" href="uploadSound.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EDEDED" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                     </svg>
                     Cadastrar Novo Audio
                 </a>
 
-                <button type="button" name="btnSend" id="btnSend" class="btn btn-primary mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+                <button type="button" name="btnSend" id="btnSend" class="btn btn-pastel-green m-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EDEDED" class="bi bi-send-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89.471-1.178-1.178.471L5.93 9.363l.338.215a.5.5 0 0 1 .154.154l.215.338 7.494-7.494Z"/>
                     </svg>  
                     Enviar
