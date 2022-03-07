@@ -37,7 +37,7 @@ Se você tem alguma ideia, sugestão, ou viu algum erro, você pode me contar [a
 ## Desenvolvedores :octocat:
 > Este projeto foi desenvolvido por esta equipe de devs
 
-| [Carlos Vinicius Mourão](https://github.com/ViniciusMourao) | [Guilherme Oliveira Rocha](https://github.com/Sekioll) | [Gustavo Herrero Nunes](https://github.com/GustavoHerreroNunes) | [Kaio Henrique Rosa Ferreira](https://github.com/HKaioFerreira) |
+| [Carlos Vinicius Mourão](https://github.com/ViniciusMourao) | [Guilherme Oliveira Rocha](https://github.com/GuilhermeRocha0) | [Gustavo Herrero Nunes](https://github.com/GustavoHerreroNunes) | [Kaio Henrique Rosa Ferreira](https://github.com/HKaioFerreira) |
 |-------------------------------------------------------------|--------------------------------------------------------|-----------------------------------------------------------------|-----------------------------------------------------------------|
 
 <!---Links utilizados no documento-->
